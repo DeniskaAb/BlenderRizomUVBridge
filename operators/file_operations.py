@@ -166,21 +166,21 @@ class ImportFromRizom(bpy.types.Operator):
 
         bpy.ops.object.select_all(action='DESELECT')
 
-        uv_index = -1
-
         for obj in sel_objs:
             import_obj = bpy.data.objects[obj.name + "_rizom"]
             bpy.data.objects[obj.name].select_set(True)
             context.view_layer.objects.active = import_obj
 
             og_index = obj.data.uv_layers.active_index
-            uv_index = 0
+            uvmap_list = act_obj.data.uv_layers
 
-            for _ in range(uv_maps):
-                obj.data.uv_layers.active_index = uv_index
-                import_obj.data.uv_layers.active_index = uv_index
+            for uvmap in uvmap_list:
+                name = uvmap.name
+                obj.data.uv_layers.active = obj.data.uv_layers[name]
+                import_obj.data.uv_layers.active\
+                    = import_obj.data.uv_layers[name]
+
                 bpy.ops.object.join_uvs()
-                uv_index = uv_index + 1
 
             obj.data.uv_layers.active_index = og_index
 
@@ -244,6 +244,6 @@ class EditInRizom(bpy.types.Operator):
 
         self.open_file()
         self.report(
-            {'INFO'}, "RizomUV Bridge: Rizom is loading your last file")
+            {'INFO'}, "RizomUV Bridge: Loading your most recent file")
 
         return {'FINISHED'}
