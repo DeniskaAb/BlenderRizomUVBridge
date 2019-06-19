@@ -107,7 +107,8 @@ class ExportToRizom(bpy.types.Operator):
             process.communicate()
 
         if not props.auto_uv:
-            self.report({'INFO'}, "RizomUV Bridge: Objects exported")
+            self.report({'INFO'}, "RizomUV Bridge: "
+                        + str(len(sel_objs)) + " object(s) exported")
 
     def execute(self, context):  # pylint: disable=unused-argument
         """Operator execution code."""
@@ -192,7 +193,8 @@ class ImportFromRizom(bpy.types.Operator):
 
         context.view_layer.objects.active = act_obj
 
-        self.report({'INFO'}, "RizomUV Bridge: UV maps transferred")
+        self.report({'INFO'}, "RizomUV Bridge: " + str(uv_maps)
+                    + " UV map(s) updated")
 
     def execute(self, context):
         """Operator execution code."""
