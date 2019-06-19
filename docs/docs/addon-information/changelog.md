@@ -65,11 +65,12 @@ DEPRECATED
 ### Added
 - Added option to automatically create seams and sharp edges from UV island boundaries.
 
+---
 
 ## Version 0.3.0
 {: .d-inline-block }
-STABLE
-{: .label .label-green }
+DEPRECATED
+{: .label .label-red }
 
 [rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.3.0/rizomuv_bridge.zip)
 
@@ -85,3 +86,17 @@ STABLE
 - Edit mode (opens RizomUV with the most recent file instead of overwriting with the selected objects).
 - Added automatic UV mapping, one click automatic trip between RizomUV and Blender using the autoseams scripts.
 - More settings (packing quality and mutations).
+
+---
+
+## Version 0.3.1
+
+{: .d-inline-block }
+STABLE
+{: .label .label-green }
+
+[rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.3.1/rizomuv_bridge.zip)
+
+### Improved
+
+- Added action reports and improved existing ones.
