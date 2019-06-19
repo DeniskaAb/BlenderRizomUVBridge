@@ -38,7 +38,9 @@ class ExportToRizom(bpy.types.Operator):
                 name = uvmap.name
                 check = name.isalnum()
                 if not check:
-                    self.report({'ERROR'}, "Invalid UV Map name: " + name)
+                    self.report(
+                        {'ERROR'},
+                        "RizomUV Bridge: Invalid UV Map name: " + name)
                     bpy.ops.ed.undo()
                     return valid
 
@@ -47,7 +49,8 @@ class ExportToRizom(bpy.types.Operator):
         for obj in objs[1:]:
             uv_maps = len(obj.data.uv_layers)
             if uv_maps != count_check:
-                self.report({'ERROR'}, '"' + obj.name + '"'
+                self.report({'ERROR'}, "RizomUV Bridge: "
+                            + '"' + obj.name + '"'
                             + " UV map count is not equal to that of "
                             + '"' + objs[0].name + '"')
                 bpy.ops.ed.undo()
@@ -67,7 +70,7 @@ class ExportToRizom(bpy.types.Operator):
 
         bpy.ops.ed.undo_push()
         if not self.uv_map_checks(sel_objs):
-            return
+            return {'CANCELLED'}
 
         for obj in sel_objs:
             new_obj = obj.copy()
@@ -103,6 +106,9 @@ class ExportToRizom(bpy.types.Operator):
         if props.auto_uv:
             process.communicate()
 
+        if not props.auto_uv:
+            self.report({'INFO'}, "RizomUV Bridge: Objects exported")
+
     def execute(self, context):  # pylint: disable=unused-argument
         """Operator execution code."""
 
@@ -116,6 +122,7 @@ class ExportToRizom(bpy.types.Operator):
 
         if props.auto_uv:
             bpy.ops.ruv.rizom_import()
+            self.report({'INFO'}, "RizomUV Bridge: UV maps transferred")
 
         if local_view:
             bpy.ops.view3d.localview(frame_selected=False)
@@ -145,8 +152,7 @@ class ImportFromRizom(bpy.types.Operator):
         bpy.ops.uv.seams_from_islands(mark_seams=True, mark_sharp=True)
         bpy.ops.object.mode_set(mode='OBJECT')
 
-    @staticmethod
-    def import_file(context):
+    def import_file(self, context):
         """Import the file, transfer the UVs and delete imported objects."""
 
         act_obj = bpy.context.active_object
@@ -186,6 +192,8 @@ class ImportFromRizom(bpy.types.Operator):
 
         context.view_layer.objects.active = act_obj
 
+        self.report({'INFO'}, "RizomUV Bridge: UV maps transferred")
+
     def execute(self, context):
         """Operator execution code."""
 
@@ -198,16 +206,15 @@ class ImportFromRizom(bpy.types.Operator):
         try:
             self.import_file(context)
         except KeyError:
-            self.report({'ERROR'}, "Item names do not match")
+            self.report({'ERROR'}, "RizomUV Bridge: Item names do not match")
             bpy.ops.ed.undo()
+            return {'CANCELLED'}
 
         if props.seams:
             self.mark_seams()
 
         if local_view:
             bpy.ops.view3d.localview(frame_selected=False)
-
-        self.report({'INFO'}, "UV maps transferred")
 
         return {'FINISHED'}
 
@@ -234,5 +241,7 @@ class EditInRizom(bpy.types.Operator):
         """Operator execution code."""
 
         self.open_file()
+        self.report(
+            {'INFO'}, "RizomUV Bridge: Rizom is loading your last file")
 
         return {'FINISHED'}
