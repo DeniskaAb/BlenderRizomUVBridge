@@ -56,6 +56,18 @@ class ExportToRizom(bpy.types.Operator):
                 bpy.ops.ed.undo()
                 return valid
 
+        check_names = [uvmap.name for uvmap in objs[0].data.uv_layers]
+        for obj in objs:
+            names = [uvmap.name for uvmap in obj.data.uv_layers]
+            if names == check_names:
+                continue
+            else:
+                self.report({'ERROR'}, "RizomUV Bridge: "
+                            + '"' + obj.name + '"'
+                            + " has UV maps not present on "
+                            + '"' + objs[0].name + '"')
+                return valid
+
         valid = True
         return valid
 
