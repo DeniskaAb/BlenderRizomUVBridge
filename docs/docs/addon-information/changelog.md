@@ -92,11 +92,25 @@ DEPRECATED
 ## Version 0.3.1
 
 {: .d-inline-block }
-STABLE
-{: .label .label-green }
+DEPRECATED
+{: .label .label-red }
 
 [rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.3.1/rizomuv_bridge.zip)
 
 ### Improved
 
 - Added action reports and improved existing ones.
+
+---
+
+## Version 0.3.2
+
+{: .d-inline-block }
+STABLE
+{: .label .label-green }
+
+[rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.3.2/rizomuv_bridge.zip)
+
+### Fixed
+- Fixed [Incorrect context error](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/5)
+- Changed UV map matching for multiple UV sets from map index to map name to avoid a bug where the index would change causing UVs to be transferred to the wrong UV set.
