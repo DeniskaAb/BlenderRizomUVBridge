@@ -165,6 +165,31 @@ class ImportFromRizom(bpy.types.Operator):
         bpy.ops.uv.seams_from_islands(mark_seams=True, mark_sharp=True)
         bpy.ops.object.mode_set(mode='OBJECT')
 
+    @staticmethod
+    def collections_reveal():
+        """Reveal hidden collections.
+
+        Returns:
+            list: List of collections that have been revealed.
+
+        """
+
+        collections = bpy.context.view_layer.layer_collection.children
+
+        col_list = [col for col in collections if col.hide_viewport is True]
+
+        for col in col_list:
+            col.hide_viewport = False
+
+        return col_list
+
+    @staticmethod
+    def collections_hide(col_list):
+        """Hide collections in list"""
+
+        for col in col_list:
+            col.hide_viewport = True
+
     def import_file(self, context):
         """Import the file, transfer the UVs and delete imported objects."""
 
@@ -177,6 +202,8 @@ class ImportFromRizom(bpy.types.Operator):
         bpy.ops.import_scene.fbx(filepath=TEMP_PATH)
 
         bpy.ops.object.select_all(action='DESELECT')
+
+        col_list = self.collections_reveal()
 
         for obj in sel_objs:
             import_obj = bpy.data.objects[obj.name + "_rizom"]
@@ -204,6 +231,8 @@ class ImportFromRizom(bpy.types.Operator):
             bpy.data.objects[obj.name].select_set(True)
 
         context.view_layer.objects.active = act_obj
+
+        self.collections_hide(col_list)
 
         self.report({'INFO'}, "RizomUV Bridge: " + str(uv_maps)
                     + " UV map(s) updated")
