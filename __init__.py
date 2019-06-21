@@ -7,8 +7,9 @@ import bpy
 from .preferences import RizomUVBridgeAddonPreferences
 from .operators.file_operations import ExportToRizom, ImportFromRizom,\
     EditInRizom
-from .ui.bridge_panel import RizomUVPanel, RizomUVSettingsPanel,\
-    RizomUVPanelProperties
+from .operators.addon_operations import ResetBridgeSettings,\
+    ResetRizomUVSettings
+from .ui.bridge_panel import RizomUVBridgePanel, RizomUVSettingsPanel
 
 bl_info = {  # pylint: disable=invalid-name
     "name": "RizomUV Bridge",
@@ -27,8 +28,9 @@ CLASSES = [RizomUVBridgeAddonPreferences,
            ExportToRizom,
            ImportFromRizom,
            EditInRizom,
-           RizomUVPanelProperties,
-           RizomUVPanel,
+           ResetBridgeSettings,
+           ResetRizomUVSettings,
+           RizomUVBridgePanel,
            RizomUVSettingsPanel]
 
 
@@ -38,14 +40,9 @@ def register():
     for cls in CLASSES:
         bpy.utils.register_class(cls)
 
-    bpy.types.WindowManager.RizomUVPanelProperties = bpy.props.PointerProperty(
-        type=RizomUVPanelProperties)
-
 
 def unregister():
     """unregister operators and menus"""
-
-    del bpy.types.WindowManager.RizomUVPanelProperties
 
     for cls in CLASSES:
         bpy.utils.unregister_class(cls)

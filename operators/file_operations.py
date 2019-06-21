@@ -1,6 +1,6 @@
 # <pep8-80 compliant>
 
-"""Manual export and import to and from RizomUV."""
+"""Operations concerning all types of file transfer."""
 
 import os
 import subprocess
@@ -74,7 +74,7 @@ class ExportToRizom(bpy.types.Operator):
     def export_file(self, context):
         """Export the file."""
 
-        props = bpy.data.window_managers["WinMan"].RizomUVPanelProperties
+        props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
 
         act_obj = bpy.context.active_object
         sel_objs = mutil.get_sel_meshes()
@@ -122,11 +122,11 @@ class ExportToRizom(bpy.types.Operator):
             self.report({'INFO'}, "RizomUV Bridge: "
                         + str(len(sel_objs)) + " object(s) exported")
 
-    def execute(self, context):  # pylint: disable=unused-argument
+    def execute(self, context):
         """Operator execution code."""
 
         local_view = context.space_data.local_view
-        props = bpy.data.window_managers["WinMan"].RizomUVPanelProperties
+        props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
 
         if local_view:
             bpy.ops.view3d.localview(frame_selected=False)
@@ -241,7 +241,7 @@ class ImportFromRizom(bpy.types.Operator):
         """Operator execution code."""
 
         local_view = context.space_data.local_view
-        props = bpy.data.window_managers["WinMan"].RizomUVPanelProperties
+        props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
 
         if local_view:
             bpy.ops.view3d.localview(frame_selected=False)

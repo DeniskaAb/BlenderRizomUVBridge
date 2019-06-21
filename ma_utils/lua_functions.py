@@ -42,7 +42,7 @@ def export_settings_str():
             list: A list of strings that can be used in LUA scripts
 
         """
-    props = bpy.data.window_managers["WinMan"].RizomUVPanelProperties
+    props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
 
     valid_extensions = (".tiff", ".png", ".jpg", ".tga", ".bmp")
 
@@ -65,7 +65,7 @@ def ruv_settings_str():
 
     """
 
-    props = bpy.data.window_managers["WinMan"].RizomUVPanelProperties
+    props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
 
     shell_padding = ("ZomIslandGroups({Mode='SetGroupsProperties',"
                      " WorkingSet='Visible', MergingPolicy=8322,"
@@ -162,7 +162,7 @@ def write_script():
 
     """
 
-    props = bpy.data.window_managers["WinMan"].RizomUVPanelProperties
+    props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
 
     strings = ruv_settings_str() + export_settings_str()
     save = save_file()
