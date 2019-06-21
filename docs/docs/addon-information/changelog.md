@@ -116,7 +116,7 @@ STABLE
 - Changed UV map matching for multiple UV sets from map index to map name to avoid a bug where the index would change causing UVs to be transferred to the wrong UV set.
 
 
-## Version 0.3.2
+## Version 0.4.0
 
 {: .d-inline-block }
 IN DEVELOPMENT
