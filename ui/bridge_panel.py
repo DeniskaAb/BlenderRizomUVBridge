@@ -84,6 +84,9 @@ class RizomUVBridgePanel(bpy.types.Panel):
 
         box = layout.box()
         row = box.row(align=True)
+        row.label(text="Preferences:", icon='PREFERENCES')
+
+        row = box.row(align=True)
         row.scale_y = 1.25
         row.operator("ruv.bridge_config_reset",
                      text="Reset Settings", icon='LOOP_BACK')
@@ -149,6 +152,9 @@ class RizomUVSettingsPanel(bpy.types.Panel):
         ###
 
         box = layout.box()
+        row = box.row(align=True)
+        row.label(text="Preferences:", icon='PREFERENCES')
+
         row = box.row(align=True)
         row.scale_y = 1.25
         row.operator("ruv.rizomuv_config_reset",

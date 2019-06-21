@@ -79,6 +79,13 @@ When this is checked Blender will automatically mark the boundaries of all UV is
 
 ---
 
+## Preferences
+
+### Reset Settings
+
+This will reset all settings in the **RizomUV Bridge panel** back to their default value.
+---
+
 ## RizomUV Settings
 
 ---
@@ -129,3 +136,11 @@ This sets the **Initial Orientation** setting in RizomUV, it controls the boundi
 ### Step Angle
 
 This sets the **Step** setting in RizomUV, it controls the step angle when finding the bets orientation while packing.
+
+---
+
+## Preferences
+
+### Reset Settings
+
+This will reset all settings in the **RizomUV Settings panel** back to their default value.
