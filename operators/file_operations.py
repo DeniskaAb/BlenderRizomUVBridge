@@ -162,7 +162,11 @@ class ImportFromRizom(bpy.types.Operator):
         """Mark seams as sharp edges on import"""
 
         bpy.ops.object.mode_set(mode='EDIT')
+        vert, face, edge = mutil.sel_mode(False, True, False)
+        bpy.ops.mesh.select_all(action='SELECT')
+        bpy.ops.mesh.mark_sharp(clear=True)
         bpy.ops.uv.seams_from_islands(mark_seams=True, mark_sharp=True)
+        mutil.sel_mode(vert, face, edge)
         bpy.ops.object.mode_set(mode='OBJECT')
 
     @staticmethod

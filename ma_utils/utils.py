@@ -11,12 +11,11 @@ def get_sel_meshes():
     returns:
         list: A list of selected bpy_types.Object items
 
-"""
+    """
 
     sel = bpy.context.selected_objects
-    for item in sel:
-        if item.type != 'MESH':
-            sel.remove(item)
+
+    sel = [item for item in sel if item.type == 'MESH']
 
     if not sel:
         sel = [bpy.context.active_object]
@@ -39,3 +38,14 @@ def set_object_context(context_mode):  # pylint: disable=unused-argument
     bpy.ops.object.mode_set(mode=context_mode)
 
     return og_context
+
+
+def sel_mode(vert=None, edge=None, face=None):
+    """Get selection mode"""
+
+    sel_mode = bpy.context.scene.tool_settings.mesh_select_mode
+
+    if vert or edge or face:
+        bpy.context.scene.tool_settings.mesh_select_mode = [vert, edge, face]
+
+    return sel_mode
