@@ -124,7 +124,7 @@ IN DEVELOPMENT
 
 ### Improved
 
-- Changed all settings to addon level preferences so that they are remembered between Blender sessions.
+- Changed all settings to addon level preferences so that they are saved between Blender sessions.
 
 ### Added
 
