@@ -122,6 +122,10 @@ STABLE
 IN DEVELOPMENT
 {: .label .label-yellow }
 
+### Fixed
+
+- Fixed [Mark seams incorrect behavior](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/6)
+
 ### Improved
 
 - Changed all settings to addon level preferences so that they are saved between Blender sessions.
