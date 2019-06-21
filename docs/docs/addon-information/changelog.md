@@ -119,8 +119,8 @@ STABLE
 ## Version 0.4.0
 
 {: .d-inline-block }
-IN DEVELOPMENT
-{: .label .label-yellow }
+STABLE
+{: .label .label-green }
 
 ### Fixed
 
