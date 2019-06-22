@@ -123,6 +123,8 @@ DEPRECATED
 DEPRECATED
 {: .label .label-red }
 
+[rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.4.0/rizomuv_bridge.zip)
+
 ### Fixed
 
 - Fixed [Mark seams incorrect behavior](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/6)
@@ -141,6 +143,8 @@ DEPRECATED
 {: .d-inline-block }
 STABLE
 {: .label .label-green }
+
+[rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.4.1/rizomuv_bridge.zip)
 
 ### Fixed
 
