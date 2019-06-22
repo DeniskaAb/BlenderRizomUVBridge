@@ -5,6 +5,7 @@
 import bpy
 import os
 import tempfile
+import rizomuv_bridge.ma_utils.utils as mutil
 
 
 class RizomUVBridgePanel(bpy.types.Panel):
@@ -23,7 +24,6 @@ class RizomUVBridgePanel(bpy.types.Panel):
         temp_file = tempfile.gettempdir() + os.sep + "rizom_temp.fbx"
 
         props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
-        sel = bpy.context.active_object
 
         layout = self.layout
 
@@ -40,8 +40,6 @@ class RizomUVBridgePanel(bpy.types.Panel):
 
         row = box.row(align=True)
         row.scale_y = 1.25
-        if not sel:
-            row.enabled = False
         if props.auto_uv is True:
             export = "Export (Auto UV)"
         else:
@@ -50,7 +48,7 @@ class RizomUVBridgePanel(bpy.types.Panel):
 
         row = box.row(align=True)
         row.scale_y = 1.25
-        if not sel:
+        if not mutil.get_meshes(False):
             row.enabled = False
         row.operator("ruv.rizom_import", text="Import", icon='IMPORT')
 

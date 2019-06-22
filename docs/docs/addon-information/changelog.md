@@ -120,8 +120,8 @@ DEPRECATED
 ## Version 0.4.0
 
 {: .d-inline-block }
-STABLE
-{: .label .label-green }
+DEPRECATED
+{: .label .label-red }
 
 ### Fixed
 
@@ -134,3 +134,19 @@ STABLE
 ### Added
 
 - Button to reset settings to default for each panel.
+
+
+## Version 0.4.1
+
+{: .d-inline-block }
+STABLE
+{: .label .label-green }
+
+### Fixed
+
+- Fixed [Mark seams incorrect behavior](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/6) (overlooked something that was not fixed in 0.4.0)
+
+### Improved
+
+- Rewrote import code so that it is no longer required to have objects selected before clicking import, the bridge will now automatically update the UV maps of matching scene objects. [Import fix](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/7)
+- Improved action reports

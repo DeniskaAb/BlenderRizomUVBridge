@@ -77,7 +77,7 @@ class ExportToRizom(bpy.types.Operator):
         props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
 
         act_obj = bpy.context.active_object
-        sel_objs = mutil.get_sel_meshes()
+        sel_objs = mutil.get_meshes(True)
         out_objs = []
 
         bpy.ops.ed.undo_push()
@@ -155,7 +155,7 @@ class ImportFromRizom(bpy.types.Operator):
     def poll(cls, context):
         """Check context is correct to run the operator."""
 
-        return context.active_object is not None
+        return mutil.get_meshes(False) is not None
 
     @staticmethod
     def mark_seams():
@@ -165,6 +165,7 @@ class ImportFromRizom(bpy.types.Operator):
         vert, face, edge = mutil.sel_mode(False, True, False)
         bpy.ops.mesh.select_all(action='SELECT')
         bpy.ops.mesh.mark_sharp(clear=True)
+        bpy.ops.mesh.select_all(action='DESELECT')
         bpy.ops.uv.seams_from_islands(mark_seams=True, mark_sharp=True)
         mutil.sel_mode(vert, face, edge)
         bpy.ops.object.mode_set(mode='OBJECT')
@@ -197,22 +198,42 @@ class ImportFromRizom(bpy.types.Operator):
     def import_file(self, context):
         """Import the file, transfer the UVs and delete imported objects."""
 
-        act_obj = bpy.context.active_object
-        sel_objs = mutil.get_sel_meshes()
-
-        uv_maps = len(act_obj.data.uv_layers)
-
         bpy.ops.ed.undo_push()
         bpy.ops.import_scene.fbx(filepath=TEMP_PATH)
+
+        scene_objs = bpy.data.objects
+        rizom_objs = [obj for obj in scene_objs if obj.name.endswith("_rizom")]
+
+        uv_objs = []
+        for obj in rizom_objs:
+            name = obj.name.replace("_rizom", "")
+            try:
+                uv_obj = bpy.data.objects[name]
+            except KeyError:
+                continue
+            uv_objs.append(uv_obj)
+
+        if not uv_objs:
+            self.report(
+                {'ERROR'},
+                "RizomUV Bridge: There are no matching objects in the scene")
+            bpy.ops.ed.undo()
+            return {'CANCELLED'}
 
         bpy.ops.object.select_all(action='DESELECT')
 
         col_list = self.collections_reveal()
 
-        for obj in sel_objs:
-            import_obj = bpy.data.objects[obj.name + "_rizom"]
+        context.view_layer.objects.active = uv_objs[0]
+        act_obj = bpy.context.active_object
+
+        uv_obj_count = len(uv_objs)
+        uv_map_count = len(act_obj.data.uv_layers)
+
+        for obj in uv_objs:
+            rizom_obj = bpy.data.objects[obj.name + "_rizom"]
             bpy.data.objects[obj.name].select_set(True)
-            context.view_layer.objects.active = import_obj
+            context.view_layer.objects.active = rizom_obj
 
             og_index = obj.data.uv_layers.active_index
             uvmap_list = act_obj.data.uv_layers
@@ -220,26 +241,31 @@ class ImportFromRizom(bpy.types.Operator):
             for uvmap in uvmap_list:
                 name = uvmap.name
                 obj.data.uv_layers.active = obj.data.uv_layers[name]
-                import_obj.data.uv_layers.active\
-                    = import_obj.data.uv_layers[name]
+                rizom_obj.data.uv_layers.active\
+                    = rizom_obj.data.uv_layers[name]
 
                 bpy.ops.object.join_uvs()
 
             obj.data.uv_layers.active_index = og_index
-
             bpy.ops.object.select_all(action='DESELECT')
-            bpy.data.objects[obj.name + "_rizom"].select_set(True)
+
+        rizom_objs = [obj for obj in mutil.get_meshes(False)
+                      if obj.name.endswith("_rizom")]
+
+        for obj in rizom_objs:
+            bpy.data.objects[obj.name].select_set(True)
             bpy.ops.object.delete(use_global=False, confirm=False)
 
-        for obj in sel_objs:
+        for obj in uv_objs:
             bpy.data.objects[obj.name].select_set(True)
 
         context.view_layer.objects.active = act_obj
 
         self.collections_hide(col_list)
 
-        self.report({'INFO'}, "RizomUV Bridge: " + str(uv_maps)
-                    + " UV map(s) updated")
+        self.report({'INFO'}, "RizomUV Bridge: " + str(uv_map_count)
+                    + " UV map(s) updated" + " on " + str(uv_obj_count)
+                    + " object(s)")
 
     def execute(self, context):
         """Operator execution code."""

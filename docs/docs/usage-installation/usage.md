@@ -46,7 +46,7 @@ Select one or more objects and click the **Export** button, RizomUV will open wi
 
 ### Import
 
-Select your objects and click the **Import** button, each UV set on your original objects will be updated.
+Click the **Import** button, each UV set on your original objects will be updated. You do not need to have any objects selected, the bridge will automatically find all matching objects and update the UV maps.
 
 **Warning:** The script uses name matching to transfer the UV maps so it is important that you do not change the names of your original objects between operations.
 {: .notice .notice-warning}

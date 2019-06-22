@@ -5,22 +5,29 @@
 import bpy
 
 
-def get_sel_meshes():
+def get_meshes(selected):
     """Get selected objects and filter for meshes
 
-    returns:
+    Args:
+        selected (bool): True for selected objects, False for all objects
+
+    Returns:
         list: A list of selected bpy_types.Object items
 
     """
 
-    sel = bpy.context.selected_objects
+    if selected:
+        objs = bpy.context.selected_objects
+        objs = [item for item in objs if item.type == 'MESH']
 
-    sel = [item for item in sel if item.type == 'MESH']
+        if not objs:
+            objs = [bpy.context.active_object]
 
-    if not sel:
-        sel = [bpy.context.active_object]
+    elif not selected:
+        for item in bpy.data.objects:
+            objs = [item for item in bpy.data.objects if item.type == 'MESH']
 
-    return sel
+    return objs
 
 
 def set_object_context(context_mode):  # pylint: disable=unused-argument
@@ -41,7 +48,17 @@ def set_object_context(context_mode):  # pylint: disable=unused-argument
 
 
 def sel_mode(vert=None, edge=None, face=None):
-    """Get selection mode"""
+    """Get selection mode
+
+    Args:
+        vert (bool): Vertex selection mode.
+        edge (bool): Edge selection mode.
+        face (bool): Face selection mode.
+
+    Returns:
+        bpy_prop_array: Array of booleans representing active selection modes.
+
+    """
 
     sel_mode = bpy.context.scene.tool_settings.mesh_select_mode
 
