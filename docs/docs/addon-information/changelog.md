@@ -116,6 +116,7 @@ DEPRECATED
 - Fixed [Incorrect context error](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/5)
 - Changed UV map matching for multiple UV sets from map index to map name to avoid a bug where the index would change causing UVs to be transferred to the wrong UV set.
 
+---
 
 ## Version 0.4.0
 
@@ -137,6 +138,7 @@ DEPRECATED
 
 - Button to reset settings to default for each panel.
 
+---
 
 ## Version 0.4.1
 
