@@ -77,6 +77,7 @@ class RizomUVBridgePanel(bpy.types.Panel):
         row = box.row(align=True)
         row.scale_y = 1.25
         row.prop(props, "seams")
+        row.prop(props, "reveal_hidden")
 
         ###
 

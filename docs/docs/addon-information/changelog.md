@@ -143,8 +143,9 @@ DEPRECATED
 ## Version 0.4.1
 
 {: .d-inline-block }
-STABLE
-{: .label .label-green }
+DEPRECATED
+{: .label .label-red }
+
 
 [rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.4.1/rizomuv_bridge.zip)
 
@@ -156,3 +157,25 @@ STABLE
 
 - Rewrote import code so that it is no longer required to have objects selected before clicking import, the bridge will now automatically update the UV maps of matching scene objects. [Import fix](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/7)
 - Improved action reports
+
+---
+
+## Version 0.4.2
+
+{: .d-inline-block }
+STABLE
+{: .label .label-green }
+
+[rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.4.2/rizomuv_bridge.zip)
+
+### Fixed
+
+- Fixed [issues described by akaSpy](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/7#issuecomment-504720225)
+
+### Improved
+
+- Improved code so that the bridge import will now find hidden objects, objects in hidden collections and objects in excluded collections.
+
+### Added
+
+- New button under **import settings** to toggle revealing hidden objects. If left unchecked any hidden objects or collections will be left hidden even if they were updated by the bridge, if checked any updated collections or objects will be revealed if they were previously hidden.

@@ -30,7 +30,7 @@ def get_meshes(selected):
     return objs
 
 
-def set_object_context(context_mode):  # pylint: disable=unused-argument
+def set_object_context(context_mode):
     """Set the objects context.
 
     Args:
@@ -66,3 +66,78 @@ def sel_mode(vert=None, edge=None, face=None):
         bpy.context.scene.tool_settings.mesh_select_mode = [vert, edge, face]
 
     return sel_mode
+
+
+def collections_reveal(objs):
+    """Reveal hidden collections.
+
+    Args:
+        objs (list): A list of bpy_types.Object items
+
+    Returns:
+        list: List of collections that have been revealed.
+
+    """
+
+    collections = bpy.context.view_layer.layer_collection.children
+    sorted_collections = []
+
+    for col in collections:
+        user_col = col.collection
+        for obj in user_col.objects:
+            if obj in objs:
+                sorted_collections.append(col)
+
+    col_hidden_list = [
+        col for col in sorted_collections if col.hide_viewport is True]
+    col_exclude_list = [
+        col for col in sorted_collections if col.exclude is True]
+
+    for col in col_hidden_list:
+        col.hide_viewport = False
+
+    for col in col_exclude_list:
+        col.exclude = False
+
+    return col_hidden_list, col_exclude_list
+
+
+def collections_hide(col_hide_list, col_exclude_list):
+    """Hide collections in list"""
+
+    for col in col_hide_list:
+        col.hide_viewport = True
+
+    for col in col_exclude_list:
+        col.exclude = True
+
+
+def objects_reveal(objs):
+    """Reveal hidden objects.
+
+    Args:
+        objs (list): A list of bpy_types.Object items
+
+    Returns:
+        list: List of objects that have been revealed.
+
+    """
+
+    hidden_objs = [obj for obj in objs if not obj.visible_get()]
+
+    for obj in hidden_objs:
+        obj.hide_set(False)
+
+    return hidden_objs
+
+
+def objects_hide(objs):
+    """Hide given objects.
+
+    Args:
+        objs (list): A list of bpy_types.Object items
+
+    """
+
+    for obj in objs:
+        obj.hide_set(True)

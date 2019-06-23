@@ -41,13 +41,19 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
     seams: bpy.props.BoolProperty(name="Mark Seams", description=seams_des,
                                   default=True)
 
+    reveal_hidden_des = ("Reveal any hidden objects/collections that "
+                         "were updated during the import process")
+    reveal_hidden: bpy.props.BoolProperty(name="Show Hidden",
+                                          description=reveal_hidden_des,
+                                          default=True)
+
     # RizomUV settings
     shell_pad_des = "Pixel padding between each UV island"
     shell_pad: bpy.props.IntProperty(name="Island Padding", default=16, min=0,
                                      subtype='PIXEL', soft_max=32,
                                      description=shell_pad_des)
 
-    map_res_des = "The horizontal resoultion of the texture map."
+    map_res_des = "The horizontal resoultion of the texture map"
     map_res: bpy.props.IntProperty(name="Map Resolution", default=2048, min=0,
                                    subtype='PIXEL', description=map_res_des)
 
@@ -84,8 +90,6 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
 
     def draw(self, context):  # pylint: disable=unused-argument
         """Draw UI"""
-
-        # props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
 
         layout = self.layout
 

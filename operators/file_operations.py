@@ -171,29 +171,29 @@ class ImportFromRizom(bpy.types.Operator):
         bpy.ops.object.mode_set(mode='OBJECT')
 
     @staticmethod
-    def collections_reveal():
-        """Reveal hidden collections.
+    def valid_act_obj(context, uv_objs, show_obj_list):
+        """Trys to set the active object to one that is not hidden,
+        defaults to arbitrary object if this is not possible.
+
+        Args:
+            uv_objs (list): A list of bpy_types.Objects.
+            show_obj_list (list): A list of hidden bpy_types.Objects
 
         Returns:
-            list: List of collections that have been revealed.
+            bpy_types.Object: Active object.
 
         """
 
-        collections = bpy.context.view_layer.layer_collection.children
+        valid_objs = [obj for obj in uv_objs if obj not in show_obj_list]
 
-        col_list = [col for col in collections if col.hide_viewport is True]
+        try:
+            context.view_layer.objects.active = valid_objs[0]
+        except IndexError:
+            context.view_layer.objects.active = uv_objs[0]
 
-        for col in col_list:
-            col.hide_viewport = False
+        act_obj = bpy.context.active_object
 
-        return col_list
-
-    @staticmethod
-    def collections_hide(col_list):
-        """Hide collections in list"""
-
-        for col in col_list:
-            col.hide_viewport = True
+        return act_obj
 
     def import_file(self, context):
         """Import the file, transfer the UVs and delete imported objects."""
@@ -213,6 +213,9 @@ class ImportFromRizom(bpy.types.Operator):
                 continue
             uv_objs.append(uv_obj)
 
+        col_hide_list, col_exclude_list = mutil.collections_reveal(uv_objs)
+        show_obj_list = mutil.objects_reveal(uv_objs)
+
         if not uv_objs:
             self.report(
                 {'ERROR'},
@@ -222,11 +225,9 @@ class ImportFromRizom(bpy.types.Operator):
 
         bpy.ops.object.select_all(action='DESELECT')
 
-        col_list = self.collections_reveal()
+        act_obj = self.valid_act_obj(context, uv_objs, show_obj_list)
 
-        context.view_layer.objects.active = uv_objs[0]
-        act_obj = bpy.context.active_object
-
+        # Just for printing output later, no use pforin the import operation
         uv_obj_count = len(uv_objs)
         uv_map_count = len(act_obj.data.uv_layers)
 
@@ -261,11 +262,11 @@ class ImportFromRizom(bpy.types.Operator):
 
         context.view_layer.objects.active = act_obj
 
-        self.collections_hide(col_list)
-
         self.report({'INFO'}, "RizomUV Bridge: " + str(uv_map_count)
                     + " UV map(s) updated" + " on " + str(uv_obj_count)
                     + " object(s)")
+
+        return col_hide_list, col_exclude_list, show_obj_list
 
     def execute(self, context):
         """Operator execution code."""
@@ -277,7 +278,8 @@ class ImportFromRizom(bpy.types.Operator):
             bpy.ops.view3d.localview(frame_selected=False)
 
         try:
-            self.import_file(context)
+            col_hide_list, col_exclude_list, obj_list = self.import_file(
+                context)
         except KeyError:
             self.report({'ERROR'}, "RizomUV Bridge: Item names do not match")
             bpy.ops.ed.undo()
@@ -288,6 +290,10 @@ class ImportFromRizom(bpy.types.Operator):
 
         if local_view:
             bpy.ops.view3d.localview(frame_selected=False)
+
+        if not props.reveal_hidden:
+            mutil.collections_hide(col_hide_list, col_exclude_list)
+            mutil.objects_hide(obj_list)
 
         return {'FINISHED'}
 
