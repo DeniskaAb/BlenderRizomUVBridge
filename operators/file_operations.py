@@ -280,6 +280,8 @@ class ImportFromRizom(bpy.types.Operator):
         try:
             col_hide_list, col_exclude_list, obj_list = self.import_file(
                 context)
+        except ValueError:
+            pass
         except KeyError:
             self.report({'ERROR'}, "RizomUV Bridge: Item names do not match")
             bpy.ops.ed.undo()
@@ -292,8 +294,11 @@ class ImportFromRizom(bpy.types.Operator):
             bpy.ops.view3d.localview(frame_selected=False)
 
         if not props.reveal_hidden:
-            mutil.collections_hide(col_hide_list, col_exclude_list)
-            mutil.objects_hide(obj_list)
+            try:
+                mutil.collections_hide(col_hide_list, col_exclude_list)
+                mutil.objects_hide(obj_list)
+            except UnboundLocalError:
+                pass
 
         return {'FINISHED'}
 
