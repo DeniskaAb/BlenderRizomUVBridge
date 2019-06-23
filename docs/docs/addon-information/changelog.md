@@ -185,6 +185,7 @@ IN DEVELOPMENT
 ### Fixed
 
 - Fixed RuntimeError exception upon clicking import with objects in a hidden collection but no matching objects for import in the scene.
+- Fixed bug with `get_meshes()` util function returning a variable assigned before reference error.
 
 ### Improved
 
