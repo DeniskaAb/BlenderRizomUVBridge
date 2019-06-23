@@ -177,7 +177,7 @@ STABLE
 
 ---
 
-## Version 0.4.2
+## Version 0.4.3
 {: .d-inline-block }
 IN DEVELOPMENT
 {: .label .label-yellow }
