@@ -195,23 +195,44 @@ class ImportFromRizom(bpy.types.Operator):
 
         return act_obj
 
+    @staticmethod
+    def uv_transfer_loop(context, uv_objs, act_obj):
+        """Loop through each UV map and transfer them"""
+
+        for obj in uv_objs:
+            rizom_obj = bpy.data.objects[obj.name + "_rizom"]
+            bpy.data.objects[obj.name].select_set(True)
+            context.view_layer.objects.active = rizom_obj
+
+            og_index = obj.data.uv_layers.active_index
+            uvmap_list = act_obj.data.uv_layers
+
+            for uvmap in uvmap_list:
+                obj.data.uv_layers.active = obj.data.uv_layers[uvmap.name]
+                rizom_obj.data.uv_layers.active\
+                    = rizom_obj.data.uv_layers[uvmap.name]
+
+                bpy.ops.object.join_uvs()
+
+            obj.data.uv_layers.active_index = og_index
+            bpy.ops.object.select_all(action='DESELECT')
+
     def import_file(self, context):
         """Import the file, transfer the UVs and delete imported objects."""
 
         bpy.ops.ed.undo_push()
         bpy.ops.import_scene.fbx(filepath=TEMP_PATH)
 
-        scene_objs = bpy.data.objects
-        rizom_objs = [obj for obj in scene_objs if obj.name.endswith("_rizom")]
+        rizom_objs = [
+            obj for obj in bpy.data.objects if obj.name.endswith("_rizom")]
 
         uv_objs = []
         for obj in rizom_objs:
             name = obj.name.replace("_rizom", "")
-            try:
-                uv_obj = bpy.data.objects[name]
-            except KeyError:
+            if name in bpy.data.objects:
+                uv_objs.append(bpy.data.objects[name])
+            else:
                 continue
-            uv_objs.append(uv_obj)
 
         col_hide_list, col_exclude_list = mutil.collections_reveal(uv_objs)
         show_obj_list = mutil.objects_reveal(uv_objs)
@@ -227,43 +248,24 @@ class ImportFromRizom(bpy.types.Operator):
 
         act_obj = self.valid_act_obj(context, uv_objs, show_obj_list)
 
-        # Just for printing output later, no use pforin the import operation
-        uv_obj_count = len(uv_objs)
-        uv_map_count = len(act_obj.data.uv_layers)
+        # Updated OBJ/UV Map count, just for outputting to the user later
+        report_count = (len(uv_objs), len(act_obj.data.uv_layers))
 
-        for obj in uv_objs:
-            rizom_obj = bpy.data.objects[obj.name + "_rizom"]
-            bpy.data.objects[obj.name].select_set(True)
-            context.view_layer.objects.active = rizom_obj
-
-            og_index = obj.data.uv_layers.active_index
-            uvmap_list = act_obj.data.uv_layers
-
-            for uvmap in uvmap_list:
-                name = uvmap.name
-                obj.data.uv_layers.active = obj.data.uv_layers[name]
-                rizom_obj.data.uv_layers.active\
-                    = rizom_obj.data.uv_layers[name]
-
-                bpy.ops.object.join_uvs()
-
-            obj.data.uv_layers.active_index = og_index
-            bpy.ops.object.select_all(action='DESELECT')
+        self.uv_transfer_loop(context, uv_objs, act_obj)
 
         rizom_objs = [obj for obj in mutil.get_meshes(False)
                       if obj.name.endswith("_rizom")]
 
         for obj in rizom_objs:
-            bpy.data.objects[obj.name].select_set(True)
-            bpy.ops.object.delete(use_global=False, confirm=False)
+            bpy.data.meshes.remove(obj.data)
 
         for obj in uv_objs:
             bpy.data.objects[obj.name].select_set(True)
 
         context.view_layer.objects.active = act_obj
 
-        self.report({'INFO'}, "RizomUV Bridge: " + str(uv_map_count)
-                    + " UV map(s) updated" + " on " + str(uv_obj_count)
+        self.report({'INFO'}, "RizomUV Bridge: " + str(report_count[1])
+                    + " UV map(s) updated" + " on " + str(report_count[0])
                     + " object(s)")
 
         return col_hide_list, col_exclude_list, show_obj_list
@@ -278,7 +280,7 @@ class ImportFromRizom(bpy.types.Operator):
             bpy.ops.view3d.localview(frame_selected=False)
 
         try:
-            col_hide_list, col_exclude_list, obj_list = self.import_file(
+            col_hide_list, col_exclude_list, show_obj_list = self.import_file(
                 context)
         except ValueError:
             pass
@@ -287,18 +289,21 @@ class ImportFromRizom(bpy.types.Operator):
             bpy.ops.ed.undo()
             return {'CANCELLED'}
 
-        if props.seams:
-            self.mark_seams()
-
-        if local_view:
-            bpy.ops.view3d.localview(frame_selected=False)
-
         if not props.reveal_hidden:
             try:
                 mutil.collections_hide(col_hide_list, col_exclude_list)
-                mutil.objects_hide(obj_list)
+                mutil.objects_hide(show_obj_list)
             except UnboundLocalError:
                 pass
+
+        if props.seams:
+            try:
+                self.mark_seams()
+            except RuntimeError:
+                pass
+
+        if local_view:
+            bpy.ops.view3d.localview(frame_selected=False)
 
         return {'FINISHED'}
 

@@ -16,6 +16,8 @@ def get_meshes(selected):
 
     """
 
+    objs = []
+
     if selected:
         objs = bpy.context.selected_objects
         objs = [item for item in objs if item.type == 'MESH']
@@ -60,12 +62,12 @@ def sel_mode(vert=None, edge=None, face=None):
 
     """
 
-    sel_mode = bpy.context.scene.tool_settings.mesh_select_mode
+    mode = bpy.context.scene.tool_settings.mesh_select_mode
 
     if vert or edge or face:
         bpy.context.scene.tool_settings.mesh_select_mode = [vert, edge, face]
 
-    return sel_mode
+    return mode
 
 
 def collections_reveal(objs):

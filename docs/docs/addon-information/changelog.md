@@ -174,3 +174,18 @@ STABLE
 ### Added
 
 - New button under **import settings** to toggle revealing hidden objects. If left unchecked any hidden objects or collections will be left hidden even if they were updated by the bridge, if checked any updated collections or objects will be revealed if they were previously hidden.
+
+---
+
+## Version 0.4.2
+{: .d-inline-block }
+IN DEVELOPMENT
+{: .label .label-yellow }
+
+### Fixed
+
+- Fixed RuntimeError exception upon clicking import with objects in a hidden collection but no matching objects for import in the scene.
+
+### Improved
+
+- Optimised code for minor speed increase.

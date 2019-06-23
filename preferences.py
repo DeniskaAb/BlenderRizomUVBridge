@@ -88,7 +88,7 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
     pack_qual: bpy.props.IntProperty(name="Quality", default=200, max=1000,
                                      min=0, description=pack_qual_des)
 
-    def draw(self, context):  # pylint: disable=unused-argument
+    def draw(self, context):
         """Draw UI"""
 
         layout = self.layout
