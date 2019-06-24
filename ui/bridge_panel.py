@@ -65,6 +65,7 @@ class RizomUVBridgePanel(bpy.types.Panel):
         row.scale_y = 1.25
         if props.script_run == 'NO_SCRIPT':
             row.enabled = False
+            props.auto_uv = False
         row.prop(props, "auto_uv")
 
         ###
