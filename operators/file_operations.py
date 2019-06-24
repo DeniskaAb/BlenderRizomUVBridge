@@ -121,6 +121,7 @@ class ExportToRizom(bpy.types.Operator):
         exe = prefs.rizomuv_path
 
         process = subprocess.Popen([exe, TEMP_PATH, '-cfi' + script])
+
         if props.auto_uv:
             process.communicate()
 
