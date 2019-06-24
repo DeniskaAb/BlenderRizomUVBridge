@@ -186,7 +186,7 @@ IN DEVELOPMENT
 
 - Fixed RuntimeError exception upon clicking import with objects in a hidden collection but no matching objects for import in the scene.
 - Fixed bug with `get_meshes()` util function returning a variable referenced before assigned error.
-- "Auto UV" checkbox now automatically unchecks itself if no unwrap script is selected, this prevents user from activating auto uv then switching off the unwrap script which leads to the automatic uv procedure doing nothing.
+- **Auto UV** checkbox now automatically unchecks itself if no unwrap script is selected, this prevents user from activating auto uv then switching off the unwrap script which leads to the automatic uv procedure doing nothing.
 
 ### Improved
 
