@@ -213,6 +213,7 @@ class ImportFromRizom(bpy.types.Operator):
             og_index = obj.data.uv_layers.active_index
             uvmap_list = act_obj.data.uv_layers
 
+            # Each UV map in the obj
             for uvmap in uvmap_list:
                 obj.data.uv_layers.active = obj.data.uv_layers[uvmap.name]
                 rizom_obj.data.uv_layers.active\
@@ -220,6 +221,7 @@ class ImportFromRizom(bpy.types.Operator):
 
                 bpy.ops.object.join_uvs()
 
+            # Reset for next iteration
             obj.data.uv_layers.active_index = og_index
             bpy.ops.object.select_all(action='DESELECT')
 
@@ -233,6 +235,8 @@ class ImportFromRizom(bpy.types.Operator):
             obj for obj in bpy.data.objects if obj.name.endswith("_rizom")]
 
         uv_objs = []
+
+        # Remove rizom suffix and compare all objs in scene for matching name
         for obj in rizom_objs:
             name = obj.name.replace("_rizom", "")
             if name in bpy.data.objects:
@@ -240,6 +244,7 @@ class ImportFromRizom(bpy.types.Operator):
             else:
                 continue
 
+        # Reveal objs and collections, our objs need to be visible for UV join
         col_hide_list, col_exclude_list = mutil.collections_reveal(uv_objs)
         show_obj_list = mutil.objects_reveal(uv_objs)
 
@@ -258,9 +263,6 @@ class ImportFromRizom(bpy.types.Operator):
         report_count = (len(uv_objs), len(act_obj.data.uv_layers))
 
         self.uv_transfer_loop(context, uv_objs, act_obj)
-
-        rizom_objs = [obj for obj in mutil.get_meshes(False)
-                      if obj.name.endswith("_rizom")]
 
         mutil.delete_meshes(rizom_objs)
 
@@ -327,9 +329,8 @@ class EditInRizom(bpy.types.Operator):
         script = lua.write_script_edit()
 
         prefs = bpy.context.preferences.addons["rizomuv_bridge"].preferences
-        exe = prefs.rizomuv_path
 
-        subprocess.Popen([exe, TEMP_PATH, '-cfi' + script])
+        subprocess.Popen([prefs.rizomuv_path, TEMP_PATH, '-cfi' + script])
 
     def execute(self, context):
         """Operator execution code."""
