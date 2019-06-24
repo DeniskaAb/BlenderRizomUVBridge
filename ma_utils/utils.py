@@ -35,8 +35,8 @@ def get_meshes(selected):
 def delete_meshes(objs):
     """Delete object data without using operators"""
 
-    [bpy.data.objects.remove(bpy.data.objects[obj.name],
-                             do_unlink=True) for obj in objs]
+    for obj in objs:
+        bpy.data.objects.remove(bpy.data.objects[obj.name], do_unlink=True)
 
 
 def set_object_context(context_mode):
