@@ -88,11 +88,10 @@ When this is checked the bridge will automatically reveal any hidden objects tha
 ### Reset Settings
 
 This will reset all settings in the **RizomUV Bridge panel** back to their default value.
+
 ---
 
 ## RizomUV Settings
-
----
 
 ## Viewport
 
