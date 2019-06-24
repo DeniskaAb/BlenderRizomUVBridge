@@ -5,9 +5,11 @@
 import os
 import subprocess
 import tempfile
+
 import bpy
-import rizomuv_bridge.ma_utils.utils as mutil
+
 import rizomuv_bridge.ma_utils.lua_functions as lua
+import rizomuv_bridge.ma_utils.utils as mutil
 
 TEMP_PATH = tempfile.gettempdir() + os.sep + "rizom_temp.fbx"
 
@@ -31,6 +33,7 @@ class ExportToRizom(bpy.types.Operator):
 
         valid = False
 
+        # Check map names are alphanumerical
         for obj in objs:
             uv_maps = obj.data.uv_layers
 
@@ -44,6 +47,7 @@ class ExportToRizom(bpy.types.Operator):
                     bpy.ops.ed.undo()
                     return valid
 
+        # Check each object has the same number of UV maps
         count_check = len(objs[0].data.uv_layers)
 
         for obj in objs[1:]:
@@ -56,6 +60,7 @@ class ExportToRizom(bpy.types.Operator):
                 bpy.ops.ed.undo()
                 return valid
 
+        # Check each objects UV maps are named the same
         check_names = [uvmap.name for uvmap in objs[0].data.uv_layers]
         for obj in objs:
             names = [uvmap.name for uvmap in obj.data.uv_layers]
@@ -92,6 +97,7 @@ class ExportToRizom(bpy.types.Operator):
 
         bpy.ops.object.select_all(action='DESELECT')
 
+        # Clear any modifiers and reset active UV index ready for export
         for obj in out_objs:
             bpy.data.objects[obj.name].select_set(True)
             obj.modifiers.clear()
@@ -103,7 +109,7 @@ class ExportToRizom(bpy.types.Operator):
             axis_forward='-Z', axis_up='Y'
         )
 
-        bpy.ops.object.delete(use_global=False, confirm=False)
+        mutil.delete_meshes(out_objs)
 
         for obj in sel_objs:
             bpy.data.objects[obj.name].select_set(True)
@@ -197,7 +203,7 @@ class ImportFromRizom(bpy.types.Operator):
 
     @staticmethod
     def uv_transfer_loop(context, uv_objs, act_obj):
-        """Loop through each UV map and transfer them"""
+        """Loop through each UV map/object and transfer them"""
 
         for obj in uv_objs:
             rizom_obj = bpy.data.objects[obj.name + "_rizom"]
@@ -256,8 +262,7 @@ class ImportFromRizom(bpy.types.Operator):
         rizom_objs = [obj for obj in mutil.get_meshes(False)
                       if obj.name.endswith("_rizom")]
 
-        for obj in rizom_objs:
-            bpy.data.meshes.remove(obj.data)
+        mutil.delete_meshes(rizom_objs)
 
         for obj in uv_objs:
             bpy.data.objects[obj.name].select_set(True)
@@ -301,7 +306,6 @@ class ImportFromRizom(bpy.types.Operator):
                 mutil.objects_hide(show_obj_list)
             except UnboundLocalError:
                 pass
-
 
         if local_view:
             bpy.ops.view3d.localview(frame_selected=False)

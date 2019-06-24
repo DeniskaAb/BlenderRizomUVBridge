@@ -32,6 +32,13 @@ def get_meshes(selected):
     return objs
 
 
+def delete_meshes(objs):
+    """Delete object data without using operators"""
+
+    [bpy.data.objects.remove(bpy.data.objects[obj.name],
+                             do_unlink=True) for obj in objs]
+
+
 def set_object_context(context_mode):
     """Set the objects context.
 
@@ -71,7 +78,8 @@ def sel_mode(vert=None, edge=None, face=None):
 
 
 def collections_reveal(objs):
-    """Reveal hidden collections.
+    """Reveal hidden collections if they contain any of
+    the supplied objects.
 
     Args:
         objs (list): A list of bpy_types.Object items

@@ -2,9 +2,11 @@
 
 """RizomUV Bridge user-interface."""
 
-import bpy
 import os
 import tempfile
+
+import bpy
+
 import rizomuv_bridge.ma_utils.utils as mutil
 
 
@@ -30,7 +32,7 @@ class RizomUVBridgePanel(bpy.types.Panel):
         # Import/Export
         box = layout.box()
         row = box.row(align=True)
-        row.label(text="UV Operations:")
+        row.label(text="UV Operations:", icon='UV_DATA')
 
         row = box.row(align=True)
         row.scale_y = 1.25
@@ -52,10 +54,13 @@ class RizomUVBridgePanel(bpy.types.Panel):
             row.enabled = False
         row.operator("ruv.rizom_import", text="Import", icon='IMPORT')
 
+        #--------------------------------------#
+        #--------------------------------------#
+
         # Export Settings
         box = layout.box()
         row = box.row(align=True)
-        row.label(text="Export Settings:")
+        row.label(text="Export Settings:", icon='EXPORT')
 
         row = box.row(align=True)
         row.scale_y = 1.25
@@ -68,19 +73,21 @@ class RizomUVBridgePanel(bpy.types.Panel):
             props.auto_uv = False
         row.prop(props, "auto_uv")
 
-        ###
+        #--------------------------------------#
+        #--------------------------------------#
 
         # Import Settings
         box = layout.box()
         row = box.row(align=True)
-        row.label(text="Import Settings:")
+        row.label(text="Import Settings:", icon='IMPORT')
 
         row = box.row(align=True)
         row.scale_y = 1.25
         row.prop(props, "seams")
         row.prop(props, "reveal_hidden")
 
-        ###
+        #--------------------------------------#
+        #--------------------------------------#
 
         box = layout.box()
         row = box.row(align=True)
@@ -117,7 +124,8 @@ class RizomUVSettingsPanel(bpy.types.Panel):
         row.scale_y = 1.25
         row.prop(props, "image_path")
 
-        ###
+        #--------------------------------------#
+        #--------------------------------------#
 
         layout = self.layout
         box = layout.box()
@@ -133,7 +141,8 @@ class RizomUVSettingsPanel(bpy.types.Panel):
         row.scale_y = 1.25
         row.prop(props, "map_res")
 
-        ###
+        #--------------------------------------#
+        #--------------------------------------#
 
         box = layout.box()
         row = box.row(align=True)
@@ -149,7 +158,8 @@ class RizomUVSettingsPanel(bpy.types.Panel):
         row.scale_y = 1.25
         row.prop(props, "orient_step")
 
-        ###
+        #--------------------------------------#
+        #--------------------------------------#
 
         box = layout.box()
         row = box.row(align=True)
