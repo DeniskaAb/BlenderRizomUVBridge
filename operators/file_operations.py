@@ -289,6 +289,12 @@ class ImportFromRizom(bpy.types.Operator):
             bpy.ops.ed.undo()
             return {'CANCELLED'}
 
+        if props.seams:
+            try:
+                self.mark_seams()
+            except RuntimeError:
+                pass
+
         if not props.reveal_hidden:
             try:
                 mutil.collections_hide(col_hide_list, col_exclude_list)
@@ -296,11 +302,6 @@ class ImportFromRizom(bpy.types.Operator):
             except UnboundLocalError:
                 pass
 
-        if props.seams:
-            try:
-                self.mark_seams()
-            except RuntimeError:
-                pass
 
         if local_view:
             bpy.ops.view3d.localview(frame_selected=False)
