@@ -77,6 +77,10 @@ This enables the automatic UV mapping functionality, while this is checked click
 
 When this is checked Blender will automatically mark the boundaries of all UV islands as sharp edges upon import. 
 
+### Show Hidden
+
+When this is checked the bridge will automatically reveal any hidden objects that have their UV map updated upon import. If it is left unchecked these objects will remain hidden (UV maps will still be updated).
+
 ---
 
 ## Preferences
