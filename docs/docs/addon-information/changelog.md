@@ -190,4 +190,4 @@ IN DEVELOPMENT
 
 ### Improved
 
-- Optimised code for minor speed increase.
+- Optimised code for performance increase: approx 16% performance increase for export, approx 86% performance increase for import.
