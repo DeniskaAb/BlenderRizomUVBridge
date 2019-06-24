@@ -4,5 +4,4 @@
 <p align="center"><strong><a href="https://mattashpole.github.io/BlenderRizomUVBridge/">Github Pages Documentation</a></strong></p>
     <br><br><br>
 </p>
-
 ![panel](./docs/assets/images/readme.png)
