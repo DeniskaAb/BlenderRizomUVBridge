@@ -110,7 +110,7 @@ def ruv_settings_str():
 
 
 def save_file():
-    """Function to save the file as a precaution
+    """Function to save the file as a precaution.
 
     returns:
         str: LUA script to overwrite the imported fbx file.

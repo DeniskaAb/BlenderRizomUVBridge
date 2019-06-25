@@ -171,8 +171,8 @@ class ImportFromRizom(bpy.types.Operator):
         defaults to arbitrary object if this is not possible.
 
         Args:
-            uv_objs (list): A list of bpy_types.Objects.
-            show_obj_list (list): A list of hidden bpy_types.Objects
+            uv_objs (list): A list of bpy_types.Objects marked for update.
+            show_obj_list (list): A list bpy_types.Objects marked as hidden.
 
         Returns:
             bpy_types.Object: Active object.
@@ -223,17 +223,12 @@ class ImportFromRizom(bpy.types.Operator):
         rizom_objs = [
             obj for obj in bpy.data.objects if obj.name.endswith("_rizom")]
 
-        uv_objs = []
-
         # Remove rizom suffix and compare all objs in scene for matching name
-        for obj in rizom_objs:
-            name = obj.name.replace("_rizom", "")
-            if name in bpy.data.objects:
-                uv_objs.append(bpy.data.objects[name])
-            else:
-                continue
+        uv_objs = [bpy.data.objects[(obj.name.replace("_rizom", ""))] for obj
+                   in rizom_objs if (obj.name.replace("_rizom", ""))
+                   in bpy.data.objects]
 
-        # Reveal objs and collections, our objs need to be visible for UV join
+        # Reveal objs and collections, objs need to be visible for UV join
         col_hide_list, col_exclude_list = mutil.collections_reveal(uv_objs)
         show_obj_list = mutil.objects_reveal(uv_objs)
 

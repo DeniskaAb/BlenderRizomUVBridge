@@ -158,8 +158,8 @@ DEPRECATED
 
 ## Version 0.4.2
 {: .d-inline-block }
-STABLE
-{: .label .label-green }
+DEPRECATED
+{: .label .label-red }
 
 [rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.4.2/rizomuv_bridge.zip)
 
@@ -179,8 +179,8 @@ STABLE
 
 ## Version 0.4.3
 {: .d-inline-block }
-IN DEVELOPMENT
-{: .label .label-yellow }
+STABLE
+{: .label .label-green }
 
 ### Fixed
 
@@ -190,4 +190,5 @@ IN DEVELOPMENT
 
 ### Improved
 
-- Optimised code for performance increase: approx 16% performance increase for export, approx 86% performance increase for import.
+- Optimised code: approx 56% performance increase for export, approx 84% performance increase for import.
+- Error report improvements.
