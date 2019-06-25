@@ -182,6 +182,8 @@ DEPRECATED
 STABLE
 {: .label .label-green }
 
+[rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.4.3/rizomuv_bridge.zip)
+
 ### Fixed
 
 - Fixed RuntimeError exception upon clicking import with objects in a hidden collection but no matching objects for import in the scene.
