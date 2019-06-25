@@ -5,5 +5,4 @@
     <br><br><br>
 </p>
 
-[![Documentation][./docs/assets/images/readme.png]][https://mattashpole.github.io/BlenderRizomUVBridge/]
 ![](./docs/assets/images/readme.png)
