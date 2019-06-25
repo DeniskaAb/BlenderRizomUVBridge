@@ -34,33 +34,18 @@ class ExportToRizom(bpy.types.Operator):
         valid = False
 
         # Check map names are alphanumerical
-        for obj in objs:
-            uv_maps = obj.data.uv_layers
+        uv_maps = objs[0].data.uv_layers
 
-            for uvmap in uv_maps:
-                name = uvmap.name
-                check = name.isalnum()
-                if not check:
-                    self.report(
-                        {'ERROR'},
-                        "RizomUV Bridge: Invalid UV Map name: " + name)
-                    bpy.ops.ed.undo()
-                    return valid
-
-        # Check each object has the same number of UV maps
-        count_check = len(objs[0].data.uv_layers)
-
-        for obj in objs[1:]:
-            uv_maps = len(obj.data.uv_layers)
-            if uv_maps != count_check:
-                self.report({'ERROR'}, "RizomUV Bridge: "
-                            + '"' + obj.name + '"'
-                            + " UV map count is not equal to that of "
-                            + '"' + objs[0].name + '"')
-                bpy.ops.ed.undo()
+        for uvmap in uv_maps:
+            name = uvmap.name
+            check = name.isalnum()
+            if not check:
+                self.report(
+                    {'ERROR'},
+                    "RizomUV Bridge: Non-alphanumeric UV Map name: " + name)
                 return valid
 
-        # Check each objects UV maps are named the same
+        # Check each objects UV maps are the same
         check_names = [uvmap.name for uvmap in objs[0].data.uv_layers]
         for obj in objs:
             names = [uvmap.name for uvmap in obj.data.uv_layers]
@@ -69,11 +54,12 @@ class ExportToRizom(bpy.types.Operator):
             else:
                 self.report({'ERROR'}, "RizomUV Bridge: "
                             + '"' + obj.name + '"'
-                            + " has UV maps not present on "
+                            + " UV maps do not match those of "
                             + '"' + objs[0].name + '"')
                 return valid
 
         valid = True
+
         return valid
 
     def export_file(self, context):
@@ -128,6 +114,8 @@ class ExportToRizom(bpy.types.Operator):
         if not props.auto_uv:
             self.report({'INFO'}, "RizomUV Bridge: "
                         + str(len(sel_objs)) + " object(s) exported")
+
+        return None
 
     def execute(self, context):
         """Operator execution code."""
@@ -293,7 +281,7 @@ class ImportFromRizom(bpy.types.Operator):
         except ValueError:
             pass
         except KeyError:
-            self.report({'ERROR'}, "RizomUV Bridge: Item names do not match")
+            self.report({'ERROR'}, "RizomUV Bridge: No matching items found")
             bpy.ops.ed.undo()
             return {'CANCELLED'}
 
