@@ -5,4 +5,4 @@
     <br><br><br>
 </p>
 
-![panel](./docs/assets/images/readme.png)
+![](./docs/assets/images/readme.png)

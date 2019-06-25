@@ -31,3 +31,6 @@ This is the docs hub for my RizomUV Bridge for Blender, any relevant information
 
 **Info:** This addon will never recieve support for any version below 2.8.
 {: .notice .notice-info}
+
+![https://paypal.me/MattAshpole?locale.x=en_GB](./docs/assets/images/paypal.png)
+
