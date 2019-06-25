@@ -191,4 +191,4 @@ STABLE
 ### Improved
 
 - Optimised code: approx 56% performance increase for export, approx 84% performance increase for import.
-- Error report improvements.
+- One error report improvement.
