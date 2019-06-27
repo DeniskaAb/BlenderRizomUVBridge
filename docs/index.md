@@ -24,6 +24,9 @@ This is the docs hub for my RizomUV Bridge for Blender, any relevant information
 - Windows
 {: .fs-6 }
 
+**Info:** I will make it compatible with other OS's if someone who wants it is willing to test for me.
+{: .notice .notice-info}
+
 ## Supported Blender Versions
 
 - 2.8
