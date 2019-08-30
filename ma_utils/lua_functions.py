@@ -35,6 +35,30 @@ def script_paths(key):
     return script
 
 
+def script_settings():
+    """User settings for the scripts
+
+    returns:
+        str: String needed to set the correct setting
+
+    """
+
+    props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
+
+    if props.script_run == 'SHARP_EDGES':
+        settings = ("ZomSet({Path="'"Vars.AutoSelect.SharpEdges.Angle"'""
+        + ", Value=" + str(props.sharp_value) + "})")
+
+    elif props.script_run == 'MOSAIC':
+        settings = ("ZomSet({Path="'"Vars.AutoSelect.Mosaic.Developability"'""
+        + ", Value=" + str(props.mosaic_value) + "})")
+
+    else:
+        settings = ""
+
+    return settings
+
+
 def export_settings_str():
     """Strings used to write export settings when constructing the LUA script.
 
@@ -109,6 +133,20 @@ def ruv_settings_str():
             quality, mutations]
 
 
+def load_file():
+    """Function to load the file into rizom.
+
+    returns:
+        str: LUA script to import the file.
+
+    """
+    file_load = ("ZomLoad({File={Path=" + '"' + TEMP_PATH + '"' + ","
+                 "ImportGroups=true, XYZ=true},"
+                 " NormalizeUVW=true})")
+
+    return file_load
+
+
 def save_file():
     """Function to save the file as a precaution.
 
@@ -165,6 +203,8 @@ def write_script():
     props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
 
     strings = ruv_settings_str() + export_settings_str()
+    script_setting = script_settings()
+    load = load_file()
     save = save_file()
 
     preset_script = script_paths(props.script_run)
@@ -176,13 +216,16 @@ def write_script():
     lua_final = open(final_script, "w")
     lua_final.truncate(0)
 
+    lua_final.write(load)
+    lua_final.write("\n" + script_setting)
+
     for string in strings:
         lua_final.write(" ".join([string]) + "\n")
 
-    lua_final.write(" ".join([preset_content, "\n", save]))
+    lua_final.write("".join([preset_content, "\n", save]))
 
     if props.auto_uv is True:
-        lua_final.write("ZomQuit() \n")
+        lua_final.write("\n" + "ZomQuit()")
 
     lua_final.close()
 

@@ -59,6 +59,8 @@ Click the **Import** button, each UV set on your original objects will be update
 
 These are scripts that will be automatically run when RizomUV opens, they automatically place seams and pack a quick UV map. I often begin by using one of these scripts then finalize the UV map manually.
 
+Some of the scripts have user configurable settings that will appear directly underneath the script selection box.
+
 **Info:** These scripts will respect the settings that you choose in the **RizomUV Settings** panel, if you select a high number of mutations for example; it will take longer for the script to complete.
 {: .notice .notice-info}
 

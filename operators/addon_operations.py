@@ -21,7 +21,9 @@ class ResetBridgeSettings(bpy.types.Operator):
         preferences = [
             "script_run",
             "auto_uv",
-            "seams"
+            "seams",
+            "sharp_value",
+            "mosaic_value"
         ]
 
         for preference in preferences:

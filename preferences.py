@@ -88,6 +88,16 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
     pack_qual: bpy.props.IntProperty(name="Quality", default=200, max=1000,
                                      min=0, description=pack_qual_des)
 
+    sharp_value_des = "Edges at a greater angle will be cut"
+    sharp_value = bpy.props.FloatProperty(name="Edge Angle", default=70.0,
+                                          max=180.0, min=0.0,
+                                          description=sharp_value_des)
+
+    mosaic_value_des = "Higher number equals more islands but less distortion"
+    mosaic_value = bpy.props.FloatProperty(name="Segments", default=0.5,
+                                          max=0.99, min=0.0,
+                                          description=mosaic_value_des)
+
     def draw(self, context):
         """Draw UI"""
 

@@ -179,8 +179,8 @@ DEPRECATED
 
 ## Version 0.4.3
 {: .d-inline-block }
-STABLE
-{: .label .label-green }
+DEPRECATED
+{: .label .label-red }
 
 [rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.4.3/rizomuv_bridge.zip)
 
@@ -194,3 +194,23 @@ STABLE
 
 - Optimised code: approx 56% performance increase for export, approx 84% performance increase for import.
 - One error report improvement.
+
+## Version 0.5.0
+{: .d-inline-block }
+STABLE
+{: .label .label-green }
+
+[rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.5.0/rizomuv_bridge.zip)
+
+### Fixed
+
+- Fixed issue which would sometimes cause Rizom to crash upon loading an autoseams script.
+- UVs are now normalised upon loading into Rizom so the autoseam scripts work properly at all times.
+
+### Improved
+
+- Added error check to prevent user from exporting if none of the selected objects have a UV Map.
+
+### Added
+
+- Added basic user settings for **Autoseams: Mosaic** and **Autoseams: Sharp Edges**.

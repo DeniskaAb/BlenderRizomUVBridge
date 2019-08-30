@@ -66,6 +66,16 @@ class RizomUVBridgePanel(bpy.types.Panel):
         row.scale_y = 1.25
         row.prop(props, "script_run")
 
+        if props.script_run == 'SHARP_EDGES':
+            row = box.row(align=True)
+            row.scale_y = 1.25
+            row.prop(props, "sharp_value")
+
+        elif props.script_run == 'MOSAIC':
+            row = box.row(align=True)
+            row.scale_y = 1.25
+            row.prop(props, "mosaic_value")
+
         row = box.row(align=True)
         row.scale_y = 1.25
         if props.script_run == 'NO_SCRIPT':

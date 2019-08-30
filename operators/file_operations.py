@@ -49,6 +49,13 @@ class ExportToRizom(bpy.types.Operator):
         check_names = [uvmap.name for uvmap in objs[0].data.uv_layers]
         for obj in objs:
             names = [uvmap.name for uvmap in obj.data.uv_layers]
+
+            # Check UV Maps exist
+            if not names:
+                self.report({'ERROR'}, "RizomUV Bridge: The selected objects"
+                            + " have no UV maps assigned.")
+                return valid
+
             if names == check_names:
                 continue
             else:
@@ -106,7 +113,7 @@ class ExportToRizom(bpy.types.Operator):
         prefs = bpy.context.preferences.addons["rizomuv_bridge"].preferences
         exe = prefs.rizomuv_path
 
-        process = subprocess.Popen([exe, TEMP_PATH, '-cfi' + script])
+        process = subprocess.Popen([exe, '-cfi' + script])
 
         if props.auto_uv:
             process.communicate()
@@ -129,8 +136,11 @@ class ExportToRizom(bpy.types.Operator):
         self.export_file(context)
 
         if props.auto_uv:
-            bpy.ops.ruv.rizom_import()
-            self.report({'INFO'}, "RizomUV Bridge: UV maps transferred")
+            try:
+                bpy.ops.ruv.rizom_import()
+                self.report({'INFO'}, "RizomUV Bridge: UV maps transferred")
+            except RuntimeError:
+                pass
 
         if local_view:
             bpy.ops.view3d.localview(frame_selected=False)
