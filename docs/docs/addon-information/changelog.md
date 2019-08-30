@@ -195,6 +195,8 @@ DEPRECATED
 - Optimised code: approx 56% performance increase for export, approx 84% performance increase for import.
 - One error report improvement.
 
+---
+
 ## Version 0.5.0
 {: .d-inline-block }
 STABLE
