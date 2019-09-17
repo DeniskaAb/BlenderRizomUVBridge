@@ -64,6 +64,13 @@ class RizomUVBridgePanel(bpy.types.Panel):
 
         row = box.row(align=True)
         row.scale_y = 1.25
+        if props.script_run != 'NO_SCRIPT':
+            row.enabled = False
+            props.preserve_uv = False
+        row.prop(props, "preserve_uv")
+
+        row = box.row(align=True)
+        row.scale_y = 1.25
         row.prop(props, "script_run")
 
         if props.script_run == 'SHARP_EDGES':
@@ -82,6 +89,9 @@ class RizomUVBridgePanel(bpy.types.Panel):
             row.enabled = False
             props.auto_uv = False
         row.prop(props, "auto_uv")
+
+        if props.script_run != 'NO_SCRIPT':
+            props.preserve_uv = False
 
         #--------------------------------------#
         #--------------------------------------#

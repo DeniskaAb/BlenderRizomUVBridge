@@ -17,7 +17,7 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
     # Export settings
     script_run_des = "Run a LUA script when Rizom launches."
     script_run: bpy.props.EnumProperty(
-        name="Script", default='SHARP_EDGES', items=(
+        name="Script", default='NO_SCRIPT', items=(
             ('NO_SCRIPT', "No Script",
              "Exports current UV layout in its present condition."),
             ('PELT', "Autoseams: Pelt",
@@ -97,6 +97,10 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
     mosaic_value = bpy.props.FloatProperty(name="Segments", default=0.5,
                                           max=0.99, min=0.0,
                                           description=mosaic_value_des)
+
+    preserve_uv_des = "Preserve existing UVs from Blender when exporting"
+    preserve_uv: bpy.props.BoolProperty(name="Preserve UVs", default=False,
+                                    description=preserve_uv_des)
 
     def draw(self, context):
         """Draw UI"""

@@ -140,9 +140,18 @@ def load_file():
         str: LUA script to import the file.
 
     """
-    file_load = ("ZomLoad({File={Path=" + '"' + TEMP_PATH + '"' + ","
-                 "ImportGroups=true, XYZ=true},"
-                 " NormalizeUVW=true})")
+
+    props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
+
+    if props.preserve_uv:
+        file_load = ("ZomLoad({File={Path=" + '"' + TEMP_PATH + '"' + ","
+                    "ImportGroups=true, XYZUVW=true,"
+                    " UVWProps=true}})")
+    else:
+        file_load = ("ZomLoad({File={Path=" + '"' + TEMP_PATH + '"' + ","
+                    "ImportGroups=true, XYZ=true},"
+                    " NormalizeUVW=true})")
+
 
     return file_load
 

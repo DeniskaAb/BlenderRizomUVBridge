@@ -55,6 +55,13 @@ Click the **Import** button, each UV set on your original objects will be update
 
 ## Export Settings
 
+### Preserve UVs
+
+When this is option is enabled objects exported usuing the bridge will have their existing UVs preserved. If it is disabled the UVs will be projected upon loading into Rizom.
+
+**Info:** Preserve UVs will automatically be disabled if any autoseams script is selected.
+{: .notice .notice-info}
+
 ### Script
 
 These are scripts that will be automatically run when RizomUV opens, they automatically place seams and pack a quick UV map. I often begin by using one of these scripts then finalize the UV map manually.

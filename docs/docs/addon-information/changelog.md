@@ -199,8 +199,8 @@ DEPRECATED
 
 ## Version 0.5.0
 {: .d-inline-block }
-STABLE
-{: .label .label-green }
+DEPRECATED
+{: .label .label-red }
 
 [rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.5.0/rizomuv_bridge.zip)
 
@@ -216,3 +216,16 @@ STABLE
 ### Added
 
 - Added basic user settings for **Autoseams: Mosaic** and **Autoseams: Sharp Edges**.
+
+---
+
+## Version 0.5.1
+{: .d-inline-block }
+STABLE
+{: .label .label-green }
+
+[rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.5.1/rizomuv_bridge.zip)
+
+### Added
+
+- Added new option to preserve existing UVs when exporting from Blender. [issue described by TheSpacebarRider](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/11)

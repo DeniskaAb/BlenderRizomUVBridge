@@ -15,7 +15,7 @@ bl_info = {  # pylint: disable=invalid-name
     "name": "RizomUV Bridge",
     "description": "Streamlined workflow between Blender and RizomUV.",
     "author": "MattA",
-    "version": (0, 4, 3),
+    "version": (0, 5, 1),
     "blender": (2, 80, 0),
     "location": "View3D > Sidebar",
     "wiki_url": "https://mattashpole.github.io/BlenderRizomUVBridge/",
