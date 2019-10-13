@@ -175,7 +175,7 @@ class ImportFromRizom(bpy.types.Operator):
     def poll(cls, context):
         """Check context is correct to run the operator."""
 
-        return mutil.get_meshes(False) is not None
+        return len(mutil.get_meshes(False)) > 0
 
     @staticmethod
     def mark_seams():

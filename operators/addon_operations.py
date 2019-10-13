@@ -63,6 +63,6 @@ class ResetRizomUVSettings(bpy.types.Operator):
         for preference in preferences:
             props.property_unset(preference)
 
-        self.report({'PROPERTY'}, "RizomUV Bridge: RizomUV settings reset")
+        self.report({'INFO'}, "RizomUV Bridge: RizomUV settings reset")
 
         return {'FINISHED'}

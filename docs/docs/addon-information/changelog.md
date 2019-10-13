@@ -244,6 +244,7 @@ IN DEVELOPMENT
 - Bridge now handles error if the RizomUV path is incorrect and prompts user to correct it. [issue described by erispe](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/12)
 - Bridge will now allow Non-alphanumeric characters in UV Map names. Periods are the only exception, Rizom will not load any mesh with periods in the UV map name so they remain restricted. [issue described by muchimi](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/13)
 - Minor tooltip improvements.
+- Made UI more compact to free up screen space.
 
 ### Fixed
 

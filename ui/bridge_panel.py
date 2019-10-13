@@ -47,12 +47,13 @@ class RizomUVBridgePanel(bpy.types.Panel):
         else:
             export = "Export"
         row.operator("ruv.rizom_export", text=export, icon='EXPORT')
-
-        row = box.row(align=True)
-        row.scale_y = 1.25
-        if not mutil.get_meshes(False):
-            row.enabled = False
         row.operator("ruv.rizom_import", text="Import", icon='IMPORT')
+
+        #row = box.row(align=True)
+        #row.scale_y = 1.25
+        #if not mutil.get_meshes(False):
+            #row.enabled = False
+        #row.operator("ruv.rizom_import", text="Import", icon='IMPORT')
 
         #--------------------------------------#
         #--------------------------------------#
@@ -62,12 +63,20 @@ class RizomUVBridgePanel(bpy.types.Panel):
         row = box.row(align=True)
         row.label(text="Export Settings:", icon='EXPORT')
 
-        row = box.row(align=True)
-        row.scale_y = 1.25
+        split = box.split()
+        col = split.column()
+        col.scale_y = 1.25
         if props.script_run != 'NO_SCRIPT':
-            row.enabled = False
+            col.enabled = False
             props.preserve_uv = False
-        row.prop(props, "preserve_uv")
+        col.prop(props, "preserve_uv")
+
+        col = split.column()
+        col.scale_y = 1.25
+        if props.script_run == 'NO_SCRIPT':
+            col.enabled = False
+            props.auto_uv = False
+        col.prop(props, "auto_uv")
 
         row = box.row(align=True)
         row.scale_y = 1.25
@@ -116,13 +125,6 @@ class RizomUVBridgePanel(bpy.types.Panel):
             row.prop(props, "link_holes", toggle=True)
             row.prop(props, "cut_handles", toggle=True)
 
-        row = box.row(align=True)
-        row.scale_y = 1.25
-        if props.script_run == 'NO_SCRIPT':
-            row.enabled = False
-            props.auto_uv = False
-        row.prop(props, "auto_uv")
-
         if props.script_run != 'NO_SCRIPT':
             props.preserve_uv = False
 
@@ -144,12 +146,14 @@ class RizomUVBridgePanel(bpy.types.Panel):
 
         box = layout.box()
         row = box.row(align=True)
-        row.label(text="Preferences:", icon='PREFERENCES')
+        row.label(text="Reset Settings:", icon='PREFERENCES')
 
         row = box.row(align=True)
         row.scale_y = 1.25
+        row.operator("ruv.rizomuv_config_reset",
+                     text="RizomUV Settings", icon='LOOP_BACK')
         row.operator("ruv.bridge_config_reset",
-                     text="Reset Settings", icon='LOOP_BACK')
+                     text="Bridge Settings", icon='LOOP_BACK')
 
 
 class RizomUVSettingsPanel(bpy.types.Panel):
@@ -189,9 +193,6 @@ class RizomUVSettingsPanel(bpy.types.Panel):
         row = box.row(align=True)
         row.scale_y = 1.25
         row.prop(props, "shell_pad")
-
-        row = box.row(align=True)
-        row.scale_y = 1.25
         row.prop(props, "map_res")
 
         #--------------------------------------#
@@ -207,18 +208,7 @@ class RizomUVSettingsPanel(bpy.types.Panel):
         row = box.row(align=True)
         row.scale_y = 1.25
         row.prop(props, "init_orient")
-        row = box.row(align=True)
-        row.scale_y = 1.25
         row.prop(props, "orient_step")
 
         #--------------------------------------#
         #--------------------------------------#
-
-        box = layout.box()
-        row = box.row(align=True)
-        row.label(text="Preferences:", icon='PREFERENCES')
-
-        row = box.row(align=True)
-        row.scale_y = 1.25
-        row.operator("ruv.rizomuv_config_reset",
-                     text="Reset Settings", icon='LOOP_BACK')
