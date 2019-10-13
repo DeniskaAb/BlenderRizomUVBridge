@@ -232,19 +232,24 @@ STABLE
 
 ---
 
-## Version 0.5.2
+## Version 0.6.0
 {: .d-inline-block }
 IN DEVELOPMENT
 {: .label .label-yellow }
 
-[rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.5.2/rizomuv_bridge.zip)
+[rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.6.0/rizomuv_bridge.zip)
 
 ### Improved
 
 - Bridge now handles error if the RizomUV path is incorrect and prompts user to correct it. [issue described by erispe](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/12)
 - Bridge will now allow Non-alphanumeric characters in UV Map names. Periods are the only exception, Rizom will not load any mesh with periods in the UV map name so they remain restricted. [issue described by muchimi](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/13)
+- Minor tooltip improvements.
 
 ### Fixed
 
 - Fixed incorrect tooltips for the settings reset buttons.
+
+### Added
+
+- New user options for every autoseams script. (Cut Handles/Cut Pipers)
 

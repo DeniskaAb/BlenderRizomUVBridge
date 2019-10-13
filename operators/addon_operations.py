@@ -6,7 +6,7 @@ import bpy
 
 
 class ResetBridgeSettings(bpy.types.Operator):
-    """Send the UVs to RizomUV."""
+    """Reset bridge addon settings to default values."""
 
     bl_description = "Reset bridge settings"
     bl_idname = "ruv.bridge_config_reset"
@@ -24,6 +24,8 @@ class ResetBridgeSettings(bpy.types.Operator):
             "auto_uv",
             "seams",
             "sharp_value",
+            "cut_handles",
+            "link_holes",
             "mosaic_value"
         ]
 
@@ -36,7 +38,7 @@ class ResetBridgeSettings(bpy.types.Operator):
 
 
 class ResetRizomUVSettings(bpy.types.Operator):
-    """Send the UVs to RizomUV."""
+    """Reset RizomUV settings to default values."""
 
     bl_description = "Reset RizomUV settings"
     bl_idname = "ruv.rizomuv_config_reset"

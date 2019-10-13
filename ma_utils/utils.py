@@ -1,18 +1,18 @@
 # <pep8-80 compliant>
 
-"""Utility functions for use in addons"""
+"""Utility functions for use in addons."""
 
 import bpy
 
 
 def get_meshes(selected):
-    """Get selected objects and filter for meshes
+    """Get selected objects and filter for meshes.
 
     Args:
-        selected (bool): True for selected objects, False for all objects
+        selected (bool): True for selected objects, False for all objects.
 
     Returns:
-        list: A list of selected bpy_types.Object items
+        list: A list of selected bpy_types.Object items.
 
     """
 
@@ -33,7 +33,7 @@ def get_meshes(selected):
 
 
 def delete_meshes(objs):
-    """Delete object data without using operators"""
+    """Delete object data without using operators."""
 
     for obj in objs:
         bpy.data.objects.remove(bpy.data.objects[obj.name], do_unlink=True)
@@ -43,7 +43,7 @@ def set_object_context(context_mode):
     """Set the objects context.
 
     Args:
-        context_mode (str): 'OBJECT' or 'EDIT'
+        context_mode (str): 'OBJECT' or 'EDIT'.
 
     Returns:
         string: Original object context.
@@ -57,7 +57,7 @@ def set_object_context(context_mode):
 
 
 def sel_mode(vert=None, edge=None, face=None):
-    """Get selection mode
+    """Get selection mode.
 
     Args:
         vert (bool): Vertex selection mode.
@@ -82,7 +82,7 @@ def collections_reveal(objs):
     the supplied objects.
 
     Args:
-        objs (list): A list of bpy_types.Object items
+        objs (list): A list of bpy_types.Object items.
 
     Returns:
         list: List of collections that have been revealed.
@@ -126,7 +126,7 @@ def objects_reveal(objs):
     """Reveal hidden objects.
 
     Args:
-        objs (list): A list of bpy_types.Object items
+        objs (list): A list of bpy_types.Object items.
 
     Returns:
         list: List of objects that have been revealed.
@@ -145,7 +145,7 @@ def objects_hide(objs):
     """Hide given objects.
 
     Args:
-        objs (list): A list of bpy_types.Object items
+        objs (list): A list of bpy_types.Object items.
 
     """
 

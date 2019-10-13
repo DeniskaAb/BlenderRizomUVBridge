@@ -11,10 +11,10 @@ TEMP_PATH = '/'.join(TEMP_PATH.split('\\'))
 
 
 def script_paths(key):
-    """Dictionary of LUA scripts
+    """Dictionary of LUA scripts.
 
     returns:
-        str: The Path of the specified script
+        str: The Path of the specified script.
 
     """
 
@@ -36,10 +36,10 @@ def script_paths(key):
 
 
 def script_settings():
-    """User settings for the scripts
+    """User settings for the scripts.
 
     returns:
-        str: String needed to set the correct setting
+        str: String needed to set the correct setting.
 
     """
 
@@ -47,11 +47,35 @@ def script_settings():
 
     if props.script_run == 'SHARP_EDGES':
         settings = ("ZomSet({Path="'"Vars.AutoSelect.SharpEdges.Angle"'""
-        + ", Value=" + str(props.sharp_value) + "})")
+                    + ", Value=" + str(props.sharp_value) + "})" + "\n"
+                    + "ZomSet({Path="'"Vars.AutoSelect.LinkHoles"'""
+                    + ", Value=" + str(props.link_holes).lower() + "})" + "\n"
+                    + "ZomSet({Path="'"Vars.AutoSelect.CutHandles"'""
+                    + ", Value=" + str(props.cut_handles).lower() + "})"
+                    + "\n")
 
     elif props.script_run == 'MOSAIC':
         settings = ("ZomSet({Path="'"Vars.AutoSelect.Mosaic.Developability"'""
-        + ", Value=" + str(props.mosaic_value) + "})")
+                    + ", Value=" + str(props.mosaic_value) + "})" + "\n"
+                    + "ZomSet({Path="'"Vars.AutoSelect.LinkHoles"'""
+                    + ", Value=" + str(props.link_holes).lower() + "})" + "\n"
+                    + "ZomSet({Path="'"Vars.AutoSelect.CutHandles"'""
+                    + ", Value=" + str(props.cut_handles).lower() + "})"
+                    + "\n")
+
+    elif props.script_run == 'PELT':
+        settings = ("ZomSet({Path="'"Vars.AutoSelect.LinkHoles"'""
+                    + ", Value=" + str(props.link_holes).lower() + "})" + "\n"
+                    + "ZomSet({Path="'"Vars.AutoSelect.CutHandles"'""
+                    + ", Value=" + str(props.cut_handles).lower() + "})"
+                    + "\n")
+
+    elif props.script_run == 'BOX':
+        settings = ("ZomSet({Path="'"Vars.AutoSelect.LinkHoles"'""
+                    + ", Value=" + str(props.link_holes).lower() + "})" + "\n"
+                    + "ZomSet({Path="'"Vars.AutoSelect.CutHandles"'""
+                    + ", Value=" + str(props.cut_handles).lower() + "})"
+                    + "\n")
 
     else:
         settings = ""
@@ -63,7 +87,7 @@ def export_settings_str():
     """Strings used to write export settings when constructing the LUA script.
 
         returns:
-            list: A list of strings that can be used in LUA scripts
+            list: A list of strings that can be used in LUA scripts.
 
         """
     props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
@@ -85,7 +109,7 @@ def ruv_settings_str():
      the LUA script.
 
     returns:
-        list: A list of strings that can be used in LUA scripts
+        list: A list of strings that can be used in LUA scripts.
 
     """
 
@@ -145,13 +169,12 @@ def load_file():
 
     if props.preserve_uv:
         file_load = ("ZomLoad({File={Path=" + '"' + TEMP_PATH + '"' + ","
-                    "ImportGroups=true, XYZUVW=true,"
-                    " UVWProps=true}})")
+                     "ImportGroups=true, XYZUVW=true,"
+                     " UVWProps=true}})")
     else:
         file_load = ("ZomLoad({File={Path=" + '"' + TEMP_PATH + '"' + ","
-                    "ImportGroups=true, XYZ=true},"
-                    " NormalizeUVW=true})")
-
+                     "ImportGroups=true, XYZ=true},"
+                     " NormalizeUVW=true})")
 
     return file_load
 
@@ -175,7 +198,7 @@ def write_script_edit():
     """Construct script to be used by edit operator.
 
     returns:
-        str: The Path of the resulting script
+        str: The Path of the resulting script.
 
     """
 
@@ -205,7 +228,7 @@ def write_script():
     """Construct the final lua script to be loaded on startup.
 
     returns:
-        str: The Path of the resulting script
+        str: The Path of the resulting script.
 
     """
 

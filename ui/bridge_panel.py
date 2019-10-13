@@ -74,14 +74,47 @@ class RizomUVBridgePanel(bpy.types.Panel):
         row.prop(props, "script_run")
 
         if props.script_run == 'SHARP_EDGES':
+
+            # Sharp edge value
             row = box.row(align=True)
             row.scale_y = 1.25
             row.prop(props, "sharp_value")
 
+            # Link holes and cut handles options
+            row = box.row(align=True)
+            row.scale_y = 1.25
+            row.prop(props, "link_holes", toggle=True)
+            row.prop(props, "cut_handles", toggle=True)
+
+
         elif props.script_run == 'MOSAIC':
+
+            # Segments value
             row = box.row(align=True)
             row.scale_y = 1.25
             row.prop(props, "mosaic_value")
+
+            # Link holes and cut handles options
+            row = box.row(align=True)
+            row.scale_y = 1.25
+            row.prop(props, "link_holes", toggle=True)
+            row.prop(props, "cut_handles", toggle=True)
+
+        elif props.script_run == 'PELT':
+
+            # Link holes and cut handles options
+            row = box.row(align=True)
+            row.scale_y = 1.25
+            row.prop(props, "link_holes", toggle=True)
+            row.prop(props, "cut_handles", toggle=True)
+
+        elif props.script_run == 'BOX':
+
+            # Link holes and cut handles options
+            row = box.row(align=True)
+            row.scale_y = 1.25
+            row.prop(props, "link_holes", toggle=True)
+            row.prop(props, "cut_handles", toggle=True)
 
         row = box.row(align=True)
         row.scale_y = 1.25

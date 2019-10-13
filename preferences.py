@@ -6,7 +6,7 @@ import bpy
 
 
 class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
-    """Addon user settings"""
+    """Addon user settings."""
 
     bl_idname = "rizomuv_bridge"
 
@@ -15,19 +15,19 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
         default=R"C:\Program Files\Rizom Lab\RizomUV VS RS 2018.0\rizomuv.exe")
 
     # Export settings
-    script_run_des = "Run a LUA script when Rizom launches."
+    script_run_des = "Run a LUA script when Rizom launches"
     script_run: bpy.props.EnumProperty(
         name="Script", default='NO_SCRIPT', items=(
             ('NO_SCRIPT', "No Script",
-             "Exports current UV layout in its present condition."),
+             "Exports current UV layout in its present condition"),
             ('PELT', "Autoseams: Pelt",
-             "Performs a quick auto unwrap using the pelt algorithm."),
+             "Performs a quick auto unwrap using the pelt algorithm"),
             ('MOSAIC', "Autoseams: Mosaic",
-             "Performs a quick auto unwrap using the mosaic algorithm."),
+             "Performs a quick auto unwrap using the mosaic algorithm"),
             ('SHARP_EDGES', "Autoseams: Sharp Edges",
-             "Performs a quick auto unwrap using the sharp edges algorithm."),
+             "Performs a quick auto unwrap using the sharp edges algorithm"),
             ('BOX', "Autoseams: Box",
-             "Performs a quick auto unwrap using the box algorithm.")
+             "Performs a quick auto unwrap using the box algorithm")
         ), description=script_run_des
     )
 
@@ -93,17 +93,25 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
                                           max=180.0, min=0.0,
                                           description=sharp_value_des)
 
+    cut_handles_des = "Cut Handles"
+    cut_handles: bpy.props.BoolProperty(name="Handles Cutter", default=True,
+                                       description=cut_handles_des)
+
+    link_holes_des = "Cut links between holes"
+    link_holes: bpy.props.BoolProperty(name="Pipes Cutter", default=True,
+                                       description=link_holes_des)
+
     mosaic_value_des = "Higher number equals more islands but less distortion"
     mosaic_value = bpy.props.FloatProperty(name="Segments", default=0.5,
-                                          max=0.99, min=0.0,
-                                          description=mosaic_value_des)
+                                           max=0.99, min=0.0,
+                                           description=mosaic_value_des)
 
     preserve_uv_des = "Preserve existing UVs from Blender when exporting"
     preserve_uv: bpy.props.BoolProperty(name="Preserve UVs", default=False,
-                                    description=preserve_uv_des)
+                                        description=preserve_uv_des)
 
     def draw(self, context):
-        """Draw UI"""
+        """Draw UI."""
 
         layout = self.layout
 

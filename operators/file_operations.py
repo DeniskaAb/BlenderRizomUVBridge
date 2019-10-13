@@ -29,7 +29,15 @@ class ExportToRizom(bpy.types.Operator):
         return context.active_object is not None
 
     def uv_map_checks(self, objs):
-        """Check UV maps are valid for use in Rizom"""
+        """Check UV maps are valid for use in Rizom.
+
+        Args:
+            objs (list): A list of bpy_types.Objects to run through UV checks.
+
+        Returns:
+            Boolean: Returns True if checks are passed, False if not.        
+
+        """
 
         valid = False
 
@@ -171,7 +179,7 @@ class ImportFromRizom(bpy.types.Operator):
 
     @staticmethod
     def mark_seams():
-        """Mark seams as sharp edges on import"""
+        """Mark seams as sharp edges on import."""
 
         bpy.ops.object.mode_set(mode='EDIT')
         vert, face, edge = mutil.sel_mode(False, True, False)
@@ -209,7 +217,7 @@ class ImportFromRizom(bpy.types.Operator):
 
     @staticmethod
     def uv_transfer_loop(context, uv_objs, act_obj):
-        """Loop through each UV map/object and transfer them"""
+        """Loop through each UV map/object and transfer them."""
 
         for obj in uv_objs:
             rizom_obj = bpy.data.objects[obj.name + "_rizom"]

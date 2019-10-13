@@ -1,9 +1,11 @@
-var = ZomGet("Vars.AutoSelect.SharpEdges.Angle")
+edge_angle = ZomGet("Vars.AutoSelect.SharpEdges.Angle")
+link_holes = ZomGet("Vars.AutoSelect.LinkHoles")
+cut_handles = ZomGet("Vars.AutoSelect.CutHandles")
 
 ZomSet({Path="Prefs.FileSuffix", Value=""})
 ZomSet({Path="Vars.EditMode.ElementMode", Value=1})
 ZomSelect({PrimType="Edge", WorkingSet="Visible", Select=true, All=true})
-ZomSelect({PrimType="Edge", WorkingSet="Visible", Select=true, ResetBefore=true, ProtectMapName="Protect", FilterIslandVisible=true, Auto={SharpEdges={AngleMin=var}, PipesCutter=false, HandleCutter=true, StoreCoordsUVW=true, FlatteningMode=0, FlatteningUnfoldParams={Iterations=1, BorderIntersections=true, TriangleFlips=true}}})
+ZomSelect({PrimType="Edge", WorkingSet="Visible", Select=true, ResetBefore=true, ProtectMapName="Protect", FilterIslandVisible=true, Auto={SharpEdges={AngleMin=edge_angle}, PipesCutter=link_holes, HandleCutter=cut_handles, StoreCoordsUVW=true, FlatteningMode=0, FlatteningUnfoldParams={Iterations=1, BorderIntersections=true, TriangleFlips=true}}})
 ZomCut({PrimType="Edge", WorkingSet="Visible"})
 ZomLoad({Data={CoordsUVWInternalPath="Mesh.Tmp.AutoSelect.UVW"}})
 ZomIslandGroups({Mode="DistributeInTilesByBBox", WorkingSet="Visible", MergingPolicy=8322})
