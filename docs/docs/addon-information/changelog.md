@@ -251,5 +251,5 @@ IN DEVELOPMENT
 
 ### Added
 
-- New user options for every autoseams script. (Cut Handles/Cut Pipers)
+- New user options for every autoseams script. (Cut Handles/Cut Pipes)
 
