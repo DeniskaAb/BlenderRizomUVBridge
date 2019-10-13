@@ -38,7 +38,7 @@ The **Edit** button opens RizomUV with the most recent file loaded and whatever 
 
 Select one or more objects and click the **Export** button, RizomUV will open with your objects loaded and run a auto UV script (if you selected one). If the **Auto UV** box is checked this button will instead create an automatic UV map and instantly apply it in blender.
 
-**Warning:** Your UV map names must contain alphabetical and numerical characters only.
+**Warning:** Your UV map names must not contain any periods.
 {: .notice .notice-warning}
 
 **Warning:** Each object needs to have the same UV maps. For example, if the first object has two UV maps: map1 and map2, every object you are exporting should have those maps.

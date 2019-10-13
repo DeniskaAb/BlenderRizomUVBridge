@@ -33,16 +33,17 @@ class ExportToRizom(bpy.types.Operator):
 
         valid = False
 
-        # Check map names are alphanumerical
+        # Check map names do not contain periods
         uv_maps = objs[0].data.uv_layers
 
         for uvmap in uv_maps:
             name = uvmap.name
-            check = name.isalnum()
-            if not check:
+            check = "." in name
+            if check:
                 self.report(
                     {'ERROR'},
-                    "RizomUV Bridge: Non-alphanumeric UV Map name: " + name)
+                    "RizomUV Bridge: Remove any periods"
+                    + " from your UV Map name: " + name)
                 return valid
 
         # Check each objects UV maps are the same
@@ -113,7 +114,13 @@ class ExportToRizom(bpy.types.Operator):
         prefs = bpy.context.preferences.addons["rizomuv_bridge"].preferences
         exe = prefs.rizomuv_path
 
-        process = subprocess.Popen([exe, '-cfi' + script])
+        try:
+            process = subprocess.Popen([exe, '-cfi' + script])
+        except FileNotFoundError:
+            self.report(
+                {'ERROR'},
+                "RizomUV Bridge: Check your path to RizomUV is set correctly")
+            return {'CANCELLED'}
 
         if props.auto_uv:
             process.communicate()

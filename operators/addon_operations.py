@@ -8,7 +8,7 @@ import bpy
 class ResetBridgeSettings(bpy.types.Operator):
     """Send the UVs to RizomUV."""
 
-    bl_description = "Export objects to a temp file and open it in RizomUV"
+    bl_description = "Reset bridge settings"
     bl_idname = "ruv.bridge_config_reset"
     bl_label = "Reset all Bridge Settings"
     bl_options = {'REGISTER', 'INTERNAL'}
@@ -38,7 +38,7 @@ class ResetBridgeSettings(bpy.types.Operator):
 class ResetRizomUVSettings(bpy.types.Operator):
     """Send the UVs to RizomUV."""
 
-    bl_description = "Export objects to a temp file and open it in RizomUV"
+    bl_description = "Reset RizomUV settings"
     bl_idname = "ruv.rizomuv_config_reset"
     bl_label = "Reset all RizomUV Settings"
     bl_options = {'REGISTER', 'INTERNAL'}
