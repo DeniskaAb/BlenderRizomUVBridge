@@ -49,12 +49,6 @@ class RizomUVBridgePanel(bpy.types.Panel):
         row.operator("ruv.rizom_export", text=export, icon='EXPORT')
         row.operator("ruv.rizom_import", text="Import", icon='IMPORT')
 
-        #row = box.row(align=True)
-        #row.scale_y = 1.25
-        #if not mutil.get_meshes(False):
-            #row.enabled = False
-        #row.operator("ruv.rizom_import", text="Import", icon='IMPORT')
-
         #--------------------------------------#
         #--------------------------------------#
 
