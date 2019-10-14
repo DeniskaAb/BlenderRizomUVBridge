@@ -96,6 +96,8 @@ When this is checked the bridge will automatically reveal any hidden objects tha
 
 ## RizomUV Settings
 
+---
+
 ## Viewport
 
 ### Texture Image Export
@@ -146,6 +148,8 @@ This sets the **Step** setting in RizomUV, it controls the step angle when findi
 ---
 
 ## Addon Preferences
+
+---
 
 ## Reset Settings
 
