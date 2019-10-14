@@ -221,8 +221,8 @@ DEPRECATED
 
 ## Version 0.5.1
 {: .d-inline-block }
-STABLE
-{: .label .label-green }
+DEPRECATED
+{: .label .label-red }
 
 [rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.5.1/rizomuv_bridge.zip)
 
@@ -234,8 +234,8 @@ STABLE
 
 ## Version 0.6.0
 {: .d-inline-block }
-IN DEVELOPMENT
-{: .label .label-yellow }
+STABLE
+{: .label .label-green }
 
 [rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.6.0/rizomuv_bridge.zip)
 
