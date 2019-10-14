@@ -10,9 +10,11 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
 
     bl_idname = "rizomuv_bridge"
 
+    rizomuv_path_des = "Path to the RizomUV executable"
     rizomuv_path: bpy.props.StringProperty(
         name="Rizom Path", subtype='FILE_PATH',
-        default=R"C:\Program Files\Rizom Lab\RizomUV VS RS 2018.0\rizomuv.exe")
+        description=rizomuv_path_des,
+        default=R"C:\Program Files\Rizom Lab\RizomUV 2019\rizomuv.exe")
 
     # Export settings
     script_run_des = "Run a LUA script when Rizom launches"
@@ -95,7 +97,7 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
 
     cut_handles_des = "Cut Handles"
     cut_handles: bpy.props.BoolProperty(name="Handles Cutter", default=True,
-                                       description=cut_handles_des)
+                                        description=cut_handles_des)
 
     link_holes_des = "Cut links between holes"
     link_holes: bpy.props.BoolProperty(name="Pipes Cutter", default=True,

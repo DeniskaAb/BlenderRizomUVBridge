@@ -245,6 +245,7 @@ IN DEVELOPMENT
 - Bridge will now allow Non-alphanumeric characters in UV Map names. Periods are the only exception, Rizom will not load any mesh with periods in the UV map name so they remain restricted. [issue described by muchimi](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/13)
 - Minor tooltip improvements.
 - Made UI more compact to free up screen space.
+- Updated default RizomUV executable path.
 
 ### Fixed
 
