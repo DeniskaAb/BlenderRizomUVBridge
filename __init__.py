@@ -9,7 +9,8 @@ from .operators.file_operations import ExportToRizom, ImportFromRizom,\
     EditInRizom
 from .operators.addon_operations import ResetBridgeSettings,\
     ResetRizomUVSettings
-from .ui.bridge_panel import RizomUVBridgePanel, RizomUVSettingsPanel
+from .ui.bridge_panel import RizomUVBridgePanel, RizomUVSettingsPanel,\
+    RizomUVPreferencesPanel
 
 bl_info = {  # pylint: disable=invalid-name
     "name": "RizomUV Bridge",
@@ -31,7 +32,8 @@ CLASSES = [RizomUVBridgeAddonPreferences,
            ResetBridgeSettings,
            ResetRizomUVSettings,
            RizomUVBridgePanel,
-           RizomUVSettingsPanel]
+           RizomUVSettingsPanel,
+           RizomUVPreferencesPanel]
 
 
 def register():

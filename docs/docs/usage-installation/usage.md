@@ -36,7 +36,7 @@ The **Edit** button opens RizomUV with the most recent file loaded and whatever 
 
 ### Export
 
-Select one or more objects and click the **Export** button, RizomUV will open with your objects loaded and run a auto UV script (if you selected one). If the **Auto UV** box is checked this button will instead create an automatic UV map and instantly apply it in blender.
+Select one or more objects and click the **Export** button, RizomUV will open with your objects loaded and run a auto UV script (if you selected one). If the **Auto UV** box is checked this button will instead create an automatic UV map and instantly apply it in blender, to use this option you must have a script selected.
 
 **Warning:** Your UV map names must not contain any periods.
 {: .notice .notice-warning}
@@ -62,21 +62,23 @@ When this is option is enabled objects exported usuing the bridge will have thei
 **Info:** Preserve UVs will automatically be disabled if any autoseams script is selected.
 {: .notice .notice-info}
 
-### Script
-
-These are scripts that will be automatically run when RizomUV opens, they automatically place seams and pack a quick UV map. I often begin by using one of these scripts then finalize the UV map manually.
-
-Some of the scripts have user configurable settings that will appear directly underneath the script selection box.
-
-**Info:** These scripts will respect the settings that you choose in the **RizomUV Settings** panel, if you select a high number of mutations for example; it will take longer for the script to complete.
-{: .notice .notice-info}
-
 ### Auto UV
 
 This enables the automatic UV mapping functionality, while this is checked clicking on export will cause RizomUV to perform the autoseams script you have selected before closing and transferring the UV map to your blender objects.
 
 **Info:** While Auto UV is enabled the **Edit** button will be unavailable.
 {: .notice .notice-info}
+
+### Script
+
+These are scripts that will be automatically run when RizomUV opens, they automatically place seams and pack a quick UV map. I often begin by using one of these scripts then finalize the UV map manually.
+
+The scripts have user configurable settings that will appear directly underneath the script selection box.
+
+**Info:** These scripts will respect the settings that you choose in the **RizomUV Settings** panel, if you select a high number of mutations for example; it will take longer for the script to complete.
+{: .notice .notice-info}
+
+
 
 ---
 
@@ -89,14 +91,6 @@ When this is checked Blender will automatically mark the boundaries of all UV is
 ### Show Hidden
 
 When this is checked the bridge will automatically reveal any hidden objects that have their UV map updated upon import. If it is left unchecked these objects will remain hidden (UV maps will still be updated).
-
----
-
-## Preferences
-
-### Reset Settings
-
-This will reset all settings in the **RizomUV Bridge panel** back to their default value.
 
 ---
 
@@ -151,8 +145,23 @@ This sets the **Step** setting in RizomUV, it controls the step angle when findi
 
 ---
 
-## Preferences
+## Addon Preferences
 
-### Reset Settings
+## Reset Settings
 
-This will reset all settings in the **RizomUV Settings panel** back to their default value.
+### Bridge settings
+
+This will reset every setting inside the **RizomUV Bridge** panel.
+
+### RizomUV settings
+
+This will reset every setting inside the **RizomUV Settings** panel.
+
+---
+
+## RizomUV Path
+
+### Rizom Path
+
+This allows you to change the path to the RizomUV executable, it is important that this is set correctly.
+

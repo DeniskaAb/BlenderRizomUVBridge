@@ -253,4 +253,5 @@ IN DEVELOPMENT
 ### Added
 
 - New user options for every autoseams script. (Cut Handles/Cut Pipes)
+- New panel to change the RizomUV exe path directly from the main UI.
 

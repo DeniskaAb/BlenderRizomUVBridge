@@ -138,17 +138,6 @@ class RizomUVBridgePanel(bpy.types.Panel):
         #--------------------------------------#
         #--------------------------------------#
 
-        box = layout.box()
-        row = box.row(align=True)
-        row.label(text="Reset Settings:", icon='PREFERENCES')
-
-        row = box.row(align=True)
-        row.scale_y = 1.25
-        row.operator("ruv.rizomuv_config_reset",
-                     text="RizomUV Settings", icon='LOOP_BACK')
-        row.operator("ruv.bridge_config_reset",
-                     text="Bridge Settings", icon='LOOP_BACK')
-
 
 class RizomUVSettingsPanel(bpy.types.Panel):
     """Rizom settings panel"""
@@ -206,3 +195,46 @@ class RizomUVSettingsPanel(bpy.types.Panel):
 
         #--------------------------------------#
         #--------------------------------------#
+
+
+class RizomUVPreferencesPanel(bpy.types.Panel):
+    """Addon preferences panel"""
+
+    bl_idname = "PANEL_PT_RizomUVPreferences"
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "UI"
+    bl_category = "RizomUV"
+    bl_context = "objectmode"
+    bl_label = "Addon Preferences"
+
+    def draw(self, context):
+        """Draw the UI."""
+
+        props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
+
+        layout = self.layout
+        box = layout.box()
+
+        #--------------------------------------#
+        #--------------------------------------#
+
+        row = box.row(align=True)
+        row.label(text="Reset Settings:", icon='PREFERENCES')
+
+        row = box.row(align=True)
+        row.scale_y = 1.25
+        row.operator("ruv.bridge_config_reset",
+                     text="Bridge Settings", icon='LOOP_BACK')
+        row.operator("ruv.rizomuv_config_reset",
+                     text="RizomUV Settings", icon='LOOP_BACK')
+
+        #--------------------------------------#
+        #--------------------------------------#
+
+        box = layout.box()
+        row = box.row(align=True)
+        row.label(text="RizomUV Path:", icon='FILEBROWSER')
+
+        row = box.row()
+        row.scale_y = 1.25
+        row.prop(props, "rizomuv_path")
