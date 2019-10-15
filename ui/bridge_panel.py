@@ -36,9 +36,7 @@ class RizomUVBridgePanel(bpy.types.Panel):
 
         row = box.row(align=True)
         row.scale_y = 1.25
-        if not os.path.exists(temp_file) or props.auto_uv is True:
-            row.enabled = False
-        row.operator("ruv.rizom_edit", text="Edit", icon='FILE_CACHE')
+        row.operator("ruv.rizom_edit", text="Load Recent File", icon='FILE_CACHE')
 
         row = box.row(align=True)
         row.scale_y = 1.25

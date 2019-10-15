@@ -246,6 +246,8 @@ STABLE
 - Minor tooltip improvements.
 - Made UI more compact to free up screen space.
 - Updated default RizomUV executable path.
+- Changed **Edit** button label to **Load Recent File** (functionality unchanged).
+- **Load Recent File** can now be used when **Auto UV** is enabled.
 
 ### Fixed
 

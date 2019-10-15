@@ -30,9 +30,9 @@ The RizomUV Bridge panel can be found in the 3D View Sidebar, the hotkey for the
 
 ## UV Operations
 
-### Edit
+### Load Recent File
 
-The **Edit** button opens RizomUV with the most recent file loaded and whatever progress was saved, it will not export anything at all from blender. This button will be unavailable if you have never exported anything from the bridge before.
+The **Load Recent File** button opens RizomUV with the most recent file loaded and whatever progress was saved, it will not export anything at all from blender. This button will be unavailable if you have never exported anything from the bridge before.
 
 ### Export
 
@@ -65,9 +65,6 @@ When this is option is enabled objects exported usuing the bridge will have thei
 ### Auto UV
 
 This enables the automatic UV mapping functionality, while this is checked clicking on export will cause RizomUV to perform the autoseams script you have selected before closing and transferring the UV map to your blender objects.
-
-**Info:** While Auto UV is enabled the **Edit** button will be unavailable.
-{: .notice .notice-info}
 
 ### Script
 
