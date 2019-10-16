@@ -12,7 +12,7 @@ permalink: /
 
 ## RizomUV Bridge For Blender
 
-[Source Code](https://github.com/MattAshpole/BlenderRizomUVBridge){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }[Releases](https://github.com/MattAshpole/BlenderRizomUVBridge/releases){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }[Bug Tracker](https://github.com/MattAshpole/BlenderRizomUVBridge/issues){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }[Feature Request](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/new?assignees=&labels=&template=feature_request.md&title=){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }[Donate](https://www.paypal.com/paypalme/my/profile?locale.x=en_US&country.x=US){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Source Code](https://github.com/MattAshpole/BlenderRizomUVBridge){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }[Releases](https://github.com/MattAshpole/BlenderRizomUVBridge/releases){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }[Bug Tracker](https://github.com/MattAshpole/BlenderRizomUVBridge/issues){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }[Feature Request](https://github.com/MattAshpole/BlenderRizomUVBridge/issues/new?assignees=&labels=&template=feature_request.md&title=){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }[Donate](https://paypal.me/MattAshpole?locale.x=en_GB){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 This is the docs hub for my RizomUV Bridge for Blender, any relevant information regarding the addon will be compiled here.
 {: .fs-6 }
