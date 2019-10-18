@@ -1,6 +1,12 @@
 link_holes = ZomGet("Vars.AutoSelect.LinkHoles")
 cut_handles = ZomGet("Vars.AutoSelect.CutHandles")
 
+ZomSet({Path="Vars.EditMode.ElementMode", Value=1})
+ZomSelect({PrimType="Edge", WorkingSet="Visible", Select=true, All=true})
+ZomMove({WorkingSet="Visible", PrimType="Edge", Mode="TransformIslandsByEdgePairs"})
+ZomWeld({PrimType="Edge", WorkingSet="Visible", Mode="All"})
+ZomResetTo3d({WorkingSet="Visible", Rescale=true})
+
 ZomSelect({PrimType="Edge", WorkingSet="Visible", Select=true, ResetBefore=true, ProtectMapName="Protect", FilterIslandVisible=true, Auto={Box={ActiveEdges={ "XPYP", "XPZP", "XPYM", "XPZM", "YPZP", "YMZP", "YMZM", "YPZM", "XMYP", "XMZP", "XMYM", "XMZM" }}, PipesCutter=link_holes, HandleCutter=cut_handles, StoreCoordsUVW=true, FlatteningMode=2}})
 ZomCut({PrimType="Edge", WorkingSet="Visible"})
 ZomLoad({Data={CoordsUVWInternalPath="Mesh.Tmp.AutoSelect.UVW"}})

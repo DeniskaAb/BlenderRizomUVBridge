@@ -258,3 +258,26 @@ STABLE
 - New user options for every autoseams script. (Cut Handles/Cut Pipes)
 - New panel to change the RizomUV exe path directly from the main UI.
 
+---
+
+## Version 0.6.1
+
+{: .d-inline-block }
+IN DEVELOPMENT
+{: .label .label-yellow }
+
+[rizomuv_bridge.zip](https://github.com/MattAshpole/BlenderRizomUVBridge/releases/download/0.6.0/rizomuv_bridge.zip)
+
+### Improved
+
+- **Preserve UVs** is now default behaviour unless a script is selected, checkbox removed as it is now redundant.
+
+### Fixed
+
+- Rizom suffix preference moved to line 1 of LUA script and preferences saved. (hopefully fixes some people having file suffix enabled in Rizom which causes UV import to fail)
+
+- **Edge Angle** and **Segments** properties now correctly set as annotations using **:** instead of **=**.
+
+### Added
+
+- New **Flatten UVs** script (simple flat projection).

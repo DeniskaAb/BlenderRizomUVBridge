@@ -22,6 +22,8 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
         name="Script", default='NO_SCRIPT', items=(
             ('NO_SCRIPT', "No Script",
              "Exports current UV layout in its present condition"),
+            ('FLATTEN', "Flatten UVs",
+             "Flat UV projection"),
             ('PELT', "Autoseams: Pelt",
              "Performs a quick auto unwrap using the pelt algorithm"),
             ('MOSAIC', "Autoseams: Mosaic",
@@ -91,7 +93,7 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
                                      min=0, description=pack_qual_des)
 
     sharp_value_des = "Edges at a greater angle will be cut"
-    sharp_value = bpy.props.FloatProperty(name="Edge Angle", default=70.0,
+    sharp_value: bpy.props.FloatProperty(name="Edge Angle", default=70.0,
                                           max=180.0, min=0.0,
                                           description=sharp_value_des)
 
@@ -104,13 +106,9 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
                                        description=link_holes_des)
 
     mosaic_value_des = "Higher number equals more islands but less distortion"
-    mosaic_value = bpy.props.FloatProperty(name="Segments", default=0.5,
+    mosaic_value: bpy.props.FloatProperty(name="Segments", default=0.5,
                                            max=0.99, min=0.0,
                                            description=mosaic_value_des)
-
-    preserve_uv_des = "Preserve existing UVs from Blender when exporting"
-    preserve_uv: bpy.props.BoolProperty(name="Preserve UVs", default=False,
-                                        description=preserve_uv_des)
 
     def draw(self, context):
         """Draw UI."""

@@ -27,7 +27,8 @@ def script_paths(key):
         'MOSAIC': scripts_dir + "mosaic_algorithm.lua",
         'SHARP_EDGES': scripts_dir + "sharp_edge_algorithm.lua",
         'BOX': scripts_dir + "box_algorithm.lua",
-        'CONSTRUCT': scripts_dir + "py_construct.lua"
+        'CONSTRUCT': scripts_dir + "py_construct.lua",
+        'FLATTEN': scripts_dir + "flatten.lua"
     }
 
     script = scripts_dic[key]
@@ -165,16 +166,9 @@ def load_file():
 
     """
 
-    props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
-
-    if props.preserve_uv:
-        file_load = ("ZomLoad({File={Path=" + '"' + TEMP_PATH + '"' + ","
-                     "ImportGroups=true, XYZUVW=true,"
-                     " UVWProps=true}})")
-    else:
-        file_load = ("ZomLoad({File={Path=" + '"' + TEMP_PATH + '"' + ","
-                     "ImportGroups=true, XYZ=true},"
-                     " NormalizeUVW=true})")
+    file_load = ("ZomLoad({File={Path=" + '"' + TEMP_PATH + '"' + ","
+                 "ImportGroups=true, XYZUVW=true,"
+                 " UVWProps=true}})")
 
     return file_load
 
@@ -238,6 +232,8 @@ def write_script():
     script_setting = script_settings()
     load = load_file()
     save = save_file()
+    suffix = ("ZomSet({Path="'"Prefs.FileSuffix"'", Value="'""'"})"
+              "\n" "ZomSavePreferences()")
 
     preset_script = script_paths(props.script_run)
     lua_preset = open(preset_script, "r")
@@ -248,7 +244,7 @@ def write_script():
     lua_final = open(final_script, "w")
     lua_final.truncate(0)
 
-    lua_final.write(load)
+    lua_final.write(suffix + "\n" + load)
     lua_final.write("\n" + script_setting)
 
     for string in strings:

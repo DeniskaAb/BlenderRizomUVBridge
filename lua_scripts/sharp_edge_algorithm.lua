@@ -2,7 +2,12 @@ edge_angle = ZomGet("Vars.AutoSelect.SharpEdges.Angle")
 link_holes = ZomGet("Vars.AutoSelect.LinkHoles")
 cut_handles = ZomGet("Vars.AutoSelect.CutHandles")
 
-ZomSet({Path="Prefs.FileSuffix", Value=""})
+ZomSet({Path="Vars.EditMode.ElementMode", Value=1})
+ZomSelect({PrimType="Edge", WorkingSet="Visible", Select=true, All=true})
+ZomMove({WorkingSet="Visible", PrimType="Edge", Mode="TransformIslandsByEdgePairs"})
+ZomWeld({PrimType="Edge", WorkingSet="Visible", Mode="All"})
+ZomResetTo3d({WorkingSet="Visible", Rescale=true})
+
 ZomSet({Path="Vars.EditMode.ElementMode", Value=1})
 ZomSelect({PrimType="Edge", WorkingSet="Visible", Select=true, All=true})
 ZomSelect({PrimType="Edge", WorkingSet="Visible", Select=true, ResetBefore=true, ProtectMapName="Protect", FilterIslandVisible=true, Auto={SharpEdges={AngleMin=edge_angle}, PipesCutter=link_holes, HandleCutter=cut_handles, StoreCoordsUVW=true, FlatteningMode=0, FlatteningUnfoldParams={Iterations=1, BorderIntersections=true, TriangleFlips=true}}})

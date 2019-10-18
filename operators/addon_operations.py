@@ -19,7 +19,6 @@ class ResetBridgeSettings(bpy.types.Operator):
         props = bpy.context.preferences.addons["rizomuv_bridge"].preferences
 
         preferences = [
-            "preserve_uv",
             "script_run",
             "auto_uv",
             "seams",

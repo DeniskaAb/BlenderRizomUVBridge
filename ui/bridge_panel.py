@@ -56,12 +56,6 @@ class RizomUVBridgePanel(bpy.types.Panel):
         row.label(text="Export Settings:", icon='EXPORT')
 
         split = box.split()
-        col = split.column()
-        col.scale_y = 1.25
-        if props.script_run != 'NO_SCRIPT':
-            col.enabled = False
-            props.preserve_uv = False
-        col.prop(props, "preserve_uv")
 
         col = split.column()
         col.scale_y = 1.25

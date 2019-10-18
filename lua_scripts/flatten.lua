@@ -1,0 +1,6 @@
+ZomSet({Path="Vars.EditMode.ElementMode", Value=1})
+ZomSelect({PrimType="Edge", WorkingSet="Visible", Select=true, All=true})
+ZomMove({WorkingSet="Visible", PrimType="Edge", Mode="TransformIslandsByEdgePairs"})
+ZomWeld({PrimType="Edge", WorkingSet="Visible", Mode="All"})
+ZomResetTo3d({WorkingSet="Visible", Rescale=true})
+ZomSelect({PrimType="IslandGroup", WorkingSet="Visible", DeSelect=true, All=true})
