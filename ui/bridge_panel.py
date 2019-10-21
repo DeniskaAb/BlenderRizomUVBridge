@@ -59,7 +59,7 @@ class RizomUVBridgePanel(bpy.types.Panel):
 
         col = split.column()
         col.scale_y = 1.25
-        if props.script_run == 'NO_SCRIPT':
+        if props.script_run in ('NO_SCRIPT', 'FLATTEN'):
             col.enabled = False
             props.auto_uv = False
         col.prop(props, "auto_uv")

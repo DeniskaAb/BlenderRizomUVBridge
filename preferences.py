@@ -35,7 +35,8 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
         ), description=script_run_des
     )
 
-    auto_uv_des = "Create an automatic uv map and return to blender"
+    auto_uv_des = ("Create an automatic UV map and return to blender"
+                   " (Autoseams Scripts)")
     auto_uv: bpy.props.BoolProperty(name="Auto UV", default=False,
                                     description=auto_uv_des)
 
@@ -94,8 +95,8 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
 
     sharp_value_des = "Edges at a greater angle will be cut"
     sharp_value: bpy.props.FloatProperty(name="Edge Angle", default=70.0,
-                                          max=180.0, min=0.0,
-                                          description=sharp_value_des)
+                                         max=180.0, min=0.0,
+                                         description=sharp_value_des)
 
     cut_handles_des = "Cut Handles"
     cut_handles: bpy.props.BoolProperty(name="Handles Cutter", default=True,
@@ -107,8 +108,8 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
 
     mosaic_value_des = "Higher number equals more islands but less distortion"
     mosaic_value: bpy.props.FloatProperty(name="Segments", default=0.5,
-                                           max=0.99, min=0.0,
-                                           description=mosaic_value_des)
+                                          max=0.99, min=0.0,
+                                          description=mosaic_value_des)
 
     def draw(self, context):
         """Draw UI."""
