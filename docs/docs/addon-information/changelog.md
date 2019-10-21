@@ -271,6 +271,7 @@ IN DEVELOPMENT
 ### Improved
 
 - **Preserve UVs** is now default behaviour unless a script is selected, checkbox removed as it is now redundant.
+- **Step Angle** default value changed to 90°.
 
 ### Fixed
 
@@ -281,3 +282,4 @@ IN DEVELOPMENT
 ### Added
 
 - New **Flatten UVs** script (simple flat projection).
+- Leaf/Branch/Trunk toggles for the **Autoseams: Pelt** script.

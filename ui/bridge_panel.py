@@ -97,6 +97,13 @@ class RizomUVBridgePanel(bpy.types.Panel):
 
         elif props.script_run == 'PELT':
 
+            # Leaf/Branch/Trunk selections
+            row = box.row(align=True)
+            row.scale_y = 1.25
+            row.prop(props, "leaf", toggle=True)
+            row.prop(props, "branch", toggle=True)
+            row.prop(props, "trunk", toggle=True)
+
             # Link holes and cut handles options
             row = box.row(align=True)
             row.scale_y = 1.25

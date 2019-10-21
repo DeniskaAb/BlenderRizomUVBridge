@@ -71,16 +71,16 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
     init_orient: bpy.props.EnumProperty(
         name="", default='1', items=(
             ('0', "No Pre-Orientation",
-             "Do not pre-orient islands."),
+             "Do not pre-orient islands"),
             ('1', "Horizontal Pre-Orientation",
-             "Pre-orient islands horizontally."),
+             "Pre-orient islands horizontally"),
             ('2', "Vertical Pre-Orientation",
-             "Pre-orient islands vertically.")
+             "Pre-orient islands vertically")
         ), description=init_orient_des
     )
 
     orient_step_des = "Step angle for finding best orientation while packing"
-    orient_step: bpy.props.IntProperty(name="Step Angle", default=45,
+    orient_step: bpy.props.IntProperty(name="Step Angle", default=90,
                                        min=0, max=180, subtype='ANGLE',
                                        description=orient_step_des)
 
@@ -110,6 +110,18 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
     mosaic_value: bpy.props.FloatProperty(name="Segments", default=0.5,
                                           max=0.99, min=0.0,
                                           description=mosaic_value_des)
+
+    leaf_des = "Cut leaf sections"
+    leaf: bpy.props.BoolProperty(name="Leaf", default=False,
+                                 description=leaf_des)
+
+    branch_des = "Cut branch sections"
+    branch: bpy.props.BoolProperty(name="Branch", default=False,
+                                 description=branch_des)
+
+    trunk_des = "Cut trunk sections"
+    trunk: bpy.props.BoolProperty(name="Trunk", default=False,
+                                 description=trunk_des)
 
     def draw(self, context):
         """Draw UI."""

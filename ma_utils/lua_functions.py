@@ -69,7 +69,14 @@ def script_settings():
                     + ", Value=" + str(props.link_holes).lower() + "})" + "\n"
                     + "ZomSet({Path="'"Vars.AutoSelect.CutHandles"'""
                     + ", Value=" + str(props.cut_handles).lower() + "})"
-                    + "\n")
+                    + "\n"
+                    + "ZomSet({Path="'"Vars.AutoSelect.Hierarchical.Leafs"'""
+                    + ", Value=" + str(props.leaf).lower() + "})" + "\n"
+                    + "ZomSet({Path="'"Vars.AutoSelect.Hierarchical.Branches"'""
+                    + ", Value=" + str(props.branch).lower() + "})" + "\n"
+                    + "ZomSet({Path="'"Vars.AutoSelect.Hierarchical.Trunk"'""
+                    + ", Value=" + str(props.trunk).lower() + "})" + "\n")
+
 
     elif props.script_run == 'BOX':
         settings = ("ZomSet({Path="'"Vars.AutoSelect.LinkHoles"'""
