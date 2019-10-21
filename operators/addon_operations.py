@@ -25,7 +25,10 @@ class ResetBridgeSettings(bpy.types.Operator):
             "sharp_value",
             "cut_handles",
             "link_holes",
-            "mosaic_value"
+            "mosaic_value",
+            "leaf",
+            "branch",
+            "trunk"
         ]
 
         for preference in preferences:
