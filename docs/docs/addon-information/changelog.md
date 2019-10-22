@@ -275,9 +275,10 @@ IN DEVELOPMENT
 
 ### Fixed
 
-- Rizom suffix preference moved to line 1 of LUA script and preferences saved. (hopefully fixes some people having file suffix enabled in Rizom which causes UV import to fail)
+- Rizom suffix preference added to line 2 of LUA script (hopefully fixes some people having file suffix enabled in Rizom which causes UV import to fail)
 - **Edge Angle** and **Segments** properties now correctly set as annotations using **:** instead of **=**.
 - **Edge Angle** property subtype changed to angle.
+- Import button checks for existence of the temp fbx file created by the bridge, if it does not exist import button is disabled. 
 
 ### Added
 

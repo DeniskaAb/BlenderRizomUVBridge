@@ -239,8 +239,7 @@ def write_script():
     script_setting = script_settings()
     load = load_file()
     save = save_file()
-    suffix = ("ZomSet({Path="'"Prefs.FileSuffix"'", Value="'""'"})"
-              "\n" "ZomSavePreferences()")
+    suffix = "ZomSet({Path="'"Prefs.FileSuffix"'", Value="'""'"})"
 
     preset_script = script_paths(props.script_run)
     lua_preset = open(preset_script, "r")

@@ -26,7 +26,7 @@ class ExportToRizom(bpy.types.Operator):
     def poll(cls, context):
         """Check context is correct to run the operator."""
 
-        return context.active_object is not None
+        return context.active_object is not None, os.path.isfile(TEMP_PATH)
 
     def uv_map_checks(self, objs):
         """Check UV maps are valid for use in Rizom.
@@ -175,7 +175,8 @@ class ImportFromRizom(bpy.types.Operator):
     def poll(cls, context):
         """Check context is correct to run the operator."""
 
-        return len(mutil.get_meshes(False)) > 0
+        return len(mutil.get_meshes(False)) > 0 and\
+            os.path.isfile(TEMP_PATH)
 
     @staticmethod
     def mark_seams():
