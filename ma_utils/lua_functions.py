@@ -251,7 +251,7 @@ def write_script():
     lua_final = open(final_script, "w")
     lua_final.truncate(0)
 
-    lua_final.write(suffix + "\n" + load)
+    lua_final.write(load + "\n" + suffix)
     lua_final.write("\n" + script_setting)
 
     for string in strings:
