@@ -94,8 +94,8 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
                                      min=0, description=pack_qual_des)
 
     sharp_value_des = "Edges at a greater angle will be cut"
-    sharp_value: bpy.props.FloatProperty(name="Edge Angle", default=70.0,
-                                         max=180.0, min=0.0,
+    sharp_value: bpy.props.IntProperty(name="Edge Angle", default=70,
+                                         max=180, min=0, subtype='ANGLE',
                                          description=sharp_value_des)
 
     cut_handles_des = "Cut Handles"

@@ -276,8 +276,8 @@ IN DEVELOPMENT
 ### Fixed
 
 - Rizom suffix preference moved to line 1 of LUA script and preferences saved. (hopefully fixes some people having file suffix enabled in Rizom which causes UV import to fail)
-
 - **Edge Angle** and **Segments** properties now correctly set as annotations using **:** instead of **=**.
+- **Edge Angle** property subtype changed to angle.
 
 ### Added
 
