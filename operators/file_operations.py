@@ -35,7 +35,7 @@ class ExportToRizom(bpy.types.Operator):
             objs (list): A list of bpy_types.Objects to run through UV checks.
 
         Returns:
-            Boolean: Returns True if checks are passed, False if not.        
+            Boolean: Returns True if checks are passed, False if not.
 
         """
 
@@ -179,15 +179,15 @@ class ImportFromRizom(bpy.types.Operator):
             os.path.isfile(TEMP_PATH)
 
     @staticmethod
-    def mark_seams():
-        """Mark seams as sharp edges on import."""
+    def mark_seams_and_sharp(_mark_seams, _mark_sharp):
+        """Mark seams and sharp edges on import."""
 
         bpy.ops.object.mode_set(mode='EDIT')
         vert, face, edge = mutil.sel_mode(False, True, False)
         bpy.ops.mesh.select_all(action='SELECT')
         bpy.ops.mesh.mark_sharp(clear=True)
         bpy.ops.mesh.select_all(action='DESELECT')
-        bpy.ops.uv.seams_from_islands(mark_seams=True, mark_sharp=True)
+        bpy.ops.uv.seams_from_islands(mark_seams=_mark_seams, mark_sharp=_mark_sharp)
         mutil.sel_mode(vert, face, edge)
         bpy.ops.object.mode_set(mode='OBJECT')
 
@@ -306,9 +306,9 @@ class ImportFromRizom(bpy.types.Operator):
             bpy.ops.ed.undo()
             return {'CANCELLED'}
 
-        if props.seams:
+        if props.seams or prop.sharp:
             try:
-                self.mark_seams()
+                self.mark_seams_and_sharp(props.seams, prop.sharp)
             except RuntimeError:
                 pass
 

@@ -41,9 +41,13 @@ class RizomUVBridgeAddonPreferences(bpy.types.AddonPreferences):
                                     description=auto_uv_des)
 
     # Import settings
-    seams_des = ("Creates seams and sharp edges from UV"
+    seams_des = ("Creates seams edges from UV"
                  " island boundaries after importing")
     seams: bpy.props.BoolProperty(name="Mark Seams", description=seams_des,
+                                  default=True)
+    sharp_des = ("Creates sharp edges from UV"
+                 " island boundaries after importing")
+    sharp: bpy.props.BoolProperty(name="Mark Sharp", description=sharp_des,
                                   default=True)
 
     reveal_hidden_des = ("Reveal any hidden objects/collections that "

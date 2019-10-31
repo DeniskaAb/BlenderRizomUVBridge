@@ -129,10 +129,11 @@ class RizomUVBridgePanel(bpy.types.Panel):
         row = box.row(align=True)
         row.label(text="Import Settings:", icon='IMPORT')
 
-        row = box.row(align=True)
-        row.scale_y = 1.25
-        row.prop(props, "seams")
-        row.prop(props, "reveal_hidden")
+        col = box.column(align=True)
+        col.scale_y = 1.25
+        col.prop(props, "seams")
+        col.prop(props, "sharp")
+        col.prop(props, "reveal_hidden")
 
         #--------------------------------------#
         #--------------------------------------#
