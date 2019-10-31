@@ -306,9 +306,9 @@ class ImportFromRizom(bpy.types.Operator):
             bpy.ops.ed.undo()
             return {'CANCELLED'}
 
-        if props.seams or prop.sharp:
+        if props.seams or props.sharp:
             try:
-                self.mark_seams_and_sharp(props.seams, prop.sharp)
+                self.mark_seams_and_sharp(props.seams, props.sharp)
             except RuntimeError:
                 pass
 
